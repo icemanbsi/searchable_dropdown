@@ -68,30 +68,30 @@ class _MyAppState extends State<MyApp> {
                   });
                 },
               ),
-//              new Container(
-//                margin: EdgeInsets.only(
-//                  top: 30
-//                ),
-//                child: new Text(
-//                  'Regular Dropdown',
-//                  style: new TextStyle(
-//                    fontSize: 18,
-//                    fontWeight: FontWeight.bold
-//                  ),
-//                )
-//              ),
-//              new DropdownButton(
-//                items: items,
-//                value: selectedValue,
-//                hint: new Text(
-//                  'Select One'
-//                ),
-//                onChanged: (value){
-//                  setState(() {
-//                    selectedValue = value;
-//                  });
-//                },
-//              )
+              new Container(
+                margin: EdgeInsets.only(
+                  top: 30
+                ),
+                child: new Text(
+                  'Regular Dropdown',
+                  style: new TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold
+                  ),
+                )
+              ),
+              new DropdownButton(
+                items: items,
+                value: selectedValue,
+                hint: new Text(
+                  'Select One'
+                ),
+                onChanged: (value){
+                  setState(() {
+                    selectedValue = value;
+                  });
+                },
+              )
             ],
           ),
         ),
