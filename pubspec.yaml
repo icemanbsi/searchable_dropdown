@@ -1,8 +1,8 @@
 name: searchable_dropdown
 description: Searchable dropdown inside a dialog
 version: 1.0.0
-author:
-homepage:
+author: Bobby Stenly<iceman.bsi@gmail.com>
+homepage: https://github.com/icemanbsi/searchable_dropdown
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
