@@ -17,6 +17,7 @@ class SearchableDropdown<T> extends StatefulWidget{
   final Color iconDisabledColor;
   final double iconSize;
   final bool isExpanded;
+  final bool isCaseSensitiveSearch;
 
   SearchableDropdown({
     Key key,
@@ -33,6 +34,7 @@ class SearchableDropdown<T> extends StatefulWidget{
     this.iconDisabledColor,
     this.iconSize = 24.0,
     this.isExpanded = false,
+    this.isCaseSensitiveSearch = false
   }) :  assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -148,6 +150,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
               return new DropdownDialog(
                 items: widget.items,
                 hint: widget.searchHint,
+                isCaseSensitiveSearch: widget.isCaseSensitiveSearch
               );
             }
         );
@@ -202,11 +205,13 @@ class DropdownDialog<T> extends StatefulWidget {
 
   final List<DropdownMenuItem<T>> items;
   final Widget hint;
+  final bool isCaseSensitiveSearch;
 
   DropdownDialog({
     Key key,
     this.items,
-    this.hint
+    this.hint,
+    this.isCaseSensitiveSearch = false
   }) :  assert(items != null),
         super(key: key);
 
@@ -226,7 +231,14 @@ class _DropdownDialogState extends State<DropdownDialog> {
     shownIndexes.clear();
     int i = 0;
     widget.items.forEach((item) {
-      if(keyword.isEmpty || item.value.toString().contains(keyword)){
+      bool isContains = false;
+      if(widget.isCaseSensitiveSearch){
+        isContains = item.value.toString().contains(keyword);
+      }
+      else{
+        isContains = item.value.toString().toLowerCase().contains(keyword.toLowerCase());
+      }
+      if(keyword.isEmpty || isContains){
         shownIndexes.add(i);
       }
       i++;

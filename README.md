@@ -21,6 +21,7 @@ Searchable dropdown item inside a dialog
 | iconEnabledColor        | Color           |                                                                                                                   |
 | iconDisabledColor       | Color           |                                                                                                                   |
 | iconSize                | Double          | 24                                                                                                                |
+| isCaseSensitiveSearch   | bool            | false                                                                                                             |
 | isExpanded              | bool            | false                                                                                                             |
 
 

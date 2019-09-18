@@ -1,3 +1,5 @@
 ## 1.0.0
+- Initial Release
 
-* TODO: Describe initial release.
+## 1.1.0
+- Adding option IsCaseSensitiveSearch

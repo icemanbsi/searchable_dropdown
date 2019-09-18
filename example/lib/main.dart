@@ -53,6 +53,7 @@ class _MyAppState extends State<MyApp> {
               new SearchableDropdown(
                 items: items,
                 value: selectedValue,
+                isCaseSensitiveSearch: true,
                 hint: new Text(
                   'Select One'
                 ),
