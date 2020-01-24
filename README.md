@@ -23,6 +23,7 @@ Searchable dropdown item inside a dialog
 | iconSize                | Double          | 24                                                                                                                |
 | isCaseSensitiveSearch   | bool            | false                                                                                                             |
 | isExpanded              | bool            | false                                                                                                             |
+| closeButtonText              | String            | "Close"                                                                                                             |
 
 
 ## Usage
