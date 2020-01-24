@@ -18,6 +18,7 @@ class SearchableDropdown<T> extends StatefulWidget{
   final double iconSize;
   final bool isExpanded;
   final bool isCaseSensitiveSearch;
+  final String closeButtonText;
 
   SearchableDropdown({
     Key key,
@@ -34,7 +35,8 @@ class SearchableDropdown<T> extends StatefulWidget{
     this.iconDisabledColor,
     this.iconSize = 24.0,
     this.isExpanded = false,
-    this.isCaseSensitiveSearch = false
+    this.isCaseSensitiveSearch = false,
+    this.closeButtonText = "Close",
   }) :  assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -150,7 +152,8 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
               return new DropdownDialog(
                 items: widget.items,
                 hint: widget.searchHint,
-                isCaseSensitiveSearch: widget.isCaseSensitiveSearch
+                isCaseSensitiveSearch: widget.isCaseSensitiveSearch,
+                closeButtonText:widget.closeButtonText
               );
             }
         );
@@ -206,26 +209,31 @@ class DropdownDialog<T> extends StatefulWidget {
   final List<DropdownMenuItem<T>> items;
   final Widget hint;
   final bool isCaseSensitiveSearch;
+  final String closeButtonText;
 
   DropdownDialog({
     Key key,
     this.items,
     this.hint,
-    this.isCaseSensitiveSearch = false
+    this.isCaseSensitiveSearch = false,
+    this.closeButtonText,
   }) :  assert(items != null),
         super(key: key);
 
-  _DropdownDialogState createState() => new _DropdownDialogState();
+  _DropdownDialogState createState() => new _DropdownDialogState(closeButtonText);
 }
 
 class _DropdownDialogState extends State<DropdownDialog> {
 
+  final String closeButtonText;
   TextEditingController txtSearch = new TextEditingController();
   TextStyle defaultButtonStyle = new TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w500
   );
   List<int> shownIndexes = [];
+
+  _DropdownDialogState(this.closeButtonText);
 
   void _updateShownIndexes(String keyword){
     shownIndexes.clear();
@@ -381,7 +389,7 @@ class _DropdownDialogState extends State<DropdownDialog> {
               Navigator.pop(context);
             },
             child: new Text(
-                'Close',
+                closeButtonText,
                 style: defaultButtonStyle
             ),
           )
