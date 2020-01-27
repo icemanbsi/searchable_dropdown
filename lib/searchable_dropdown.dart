@@ -271,12 +271,11 @@ class DropdownDialog<T> extends StatefulWidget {
   }) :  assert(items != null),
         super(key: key);
 
-  _DropdownDialogState createState() => new _DropdownDialogState(closeButtonText);
+  _DropdownDialogState createState() => new _DropdownDialogState();
 }
 
 class _DropdownDialogState extends State<DropdownDialog> {
 
-  final String closeButtonText;
   TextEditingController txtSearch = new TextEditingController();
   TextStyle defaultButtonStyle = new TextStyle(
       fontSize: 16,
@@ -284,7 +283,7 @@ class _DropdownDialogState extends State<DropdownDialog> {
   );
   List<int> shownIndexes = [];
 
-  _DropdownDialogState(this.closeButtonText);
+  _DropdownDialogState();
 
   void _updateShownIndexes(String keyword){
     shownIndexes.clear();
@@ -440,7 +439,7 @@ class _DropdownDialogState extends State<DropdownDialog> {
               Navigator.pop(context);
             },
             child: new Text(
-                closeButtonText,
+                widget.closeButtonText,
                 style: defaultButtonStyle
             ),
           )
