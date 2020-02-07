@@ -22,6 +22,8 @@ class SearchableDropdown<T> extends StatefulWidget{
   final bool displayClearButton;
   final Widget clearIcon;
   final Function onClear;
+  final Function selectedValueWidgetFn;
+  final bool assertUniqueValue;
 
   SearchableDropdown({
     Key key,
@@ -43,6 +45,8 @@ class SearchableDropdown<T> extends StatefulWidget{
     this.displayClearButton = false,
     this.clearIcon = const Icon(Icons.clear),
     this.onClear,
+    this.selectedValueWidgetFn,
+    this.assertUniqueValue = true,
   }) :  assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -73,6 +77,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       case Brightness.dark:
         return Colors.white70;
     }
+    return Colors.grey.shade700;
   }
 
   Color get _disabledIconColor{
@@ -88,18 +93,12 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       case Brightness.dark:
         return Colors.white10;
     }
+    return Colors.grey.shade400;
   }
 
   Color get _iconColor {
     // These colors are not defined in the Material Design spec.
-    if (_enabled) {
-      return(_enabledIconColor);
-    } else {
-      return(_disabledIconColor);
-    }
-
-    assert(false);
-    return null;
+    return(_enabled?_enabledIconColor:_disabledIconColor);
   }
 
   void _updateSelectedIndex() {
@@ -108,7 +107,8 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     }
 
     assert(widget.value == null ||
-        widget.items.where((DropdownMenuItem<T> item) => item.value == widget.value).length == 1);
+        (!widget.assertUniqueValue ||
+            widget.items.where((DropdownMenuItem<T> item) => item.value == widget.value).length == 1));
     _selectedIndex = null;
     for (int itemIndex = 0; itemIndex < widget.items.length; itemIndex++) {
       if (widget.items[itemIndex].value == widget.value) {
@@ -148,18 +148,63 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     }
     final int index = _enabled ? (_selectedIndex ?? hintIndex) : hintIndex;
     Widget innerItemsWidget;
-    if (items.isEmpty) {
-      innerItemsWidget = Container();
-    } else {
-      innerItemsWidget = IndexedStack(
-        index: index,
-        alignment: AlignmentDirectional.centerStart,
-        children: items,
-      );
+    if(widget.selectedValueWidgetFn != null) {
+      if (items.isEmpty || _selectedIndex == null) {
+        innerItemsWidget = widget.selectedValueWidgetFn(null);
+      }
+      else {
+        innerItemsWidget =
+            widget.selectedValueWidgetFn(widget.items[_selectedIndex].value);
+      }
+    }
+    else {
+      if (items.isEmpty) {
+        innerItemsWidget = Container();
+      } else {
+        innerItemsWidget = IndexedStack(
+          index: index,
+          alignment: AlignmentDirectional.centerStart,
+          children: items,
+        );
+      }
     }
     final EdgeInsetsGeometry padding = ButtonTheme.of(context).alignedDropdown
         ? _kAlignedButtonPadding
         : _kUnalignedButtonPadding;
+
+    Widget clickable=InkWell(
+        onTap: () async {
+          T value = await showDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (context) {
+                return new DropdownDialog(
+                    items: widget.items,
+                    hint: widget.searchHint,
+                    isCaseSensitiveSearch: widget.isCaseSensitiveSearch,
+                    closeButtonText: widget.closeButtonText
+                );
+              }
+          );
+          if (widget.onChanged != null && value != null) {
+            widget.onChanged(value);
+          }
+        },
+        child: Row(
+          children: <Widget>[
+            widget.isExpanded
+                ? Expanded(child: innerItemsWidget)
+                : innerItemsWidget,
+            IconTheme(
+              data: IconThemeData(
+                color: _iconColor,
+                size: widget.iconSize,
+              ),
+              child: widget.icon ?? defaultIcon,
+            ),
+          ],
+        )
+    );
 
     Widget result = DefaultTextStyle(
       style: _textStyle,
@@ -169,39 +214,9 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            InkWell(
-                onTap: () async {
-                  T value = await showDialog(
-                      context: context,
-                      barrierDismissible: true,
-                      builder: (context) {
-                        return new DropdownDialog(
-                            items: widget.items,
-                            hint: widget.searchHint,
-                            isCaseSensitiveSearch: widget.isCaseSensitiveSearch,
-                            closeButtonText: widget.closeButtonText
-                        );
-                      }
-                  );
-                  if (widget.onChanged != null && value != null) {
-                    widget.onChanged(value);
-                  }
-                },
-                child: Row(
-                  children: <Widget>[
-                    widget.isExpanded
-                        ? Expanded(child: innerItemsWidget)
-                        : innerItemsWidget,
-                    IconTheme(
-                      data: IconThemeData(
-                        color: _iconColor,
-                        size: widget.iconSize,
-                      ),
-                      child: widget.icon ?? defaultIcon,
-                    ),
-                  ],
-                )
-            ),
+            widget.isExpanded?Expanded(
+              child: clickable
+            ):clickable,
             !widget.displayClearButton ? SizedBox() : InkWell(
               onTap: _selectedIndex == null ? null : () {
                 _selectedIndex = null;
