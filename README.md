@@ -27,6 +27,8 @@ Searchable dropdown item inside a dialog
 | displayClearButton      | bool            | false                                                                                                             |
 | clearIcon               | Widget          | Icon(Icons.clear)                                                                                                 |
 | onClear                 | Function        | null                                                                                                             |
+| selectedValueWidgetFn   | Function        | null                                                                                                             |
+| assertUniqueValue       | bool            | true                                                                                                             |
 
 
 ## Usage
@@ -65,4 +67,27 @@ Widget widget() {
      },
    );
 }
+```
+### Values
+Values of the `DropdownMenuItem` objects must be strings or implement the `toString()` method. Those strings are used for the search.
+
+### Clear button
+A clear button can be displayed to unselect the selected value.
+
+### Display selected value differently
+It can be that one wants to display the selected value differently than in the list. In this case, the parameter selectedValueWidgetFn can be used to customize the rendering widget. Here is an example with an outcome similar to the one in the main.dart example:
+```
+selectedValueWidgetFn: (value) => Padding(
+  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+  child:Text(
+    value??"Select please",
+    style: value==null?TextStyle(color:Theme.of(context).hintColor):null,
+  )
+),
+```
+
+### Assert unique value
+It can be that the selected value doesn't correspond to a single or any items. In this case, an assert will generate an error. If, you would like to avoid this assert, cou can call the `SearchableDropDown` constructor with the following parameter:
+```
+assertUniqueValue: false,
 ```
