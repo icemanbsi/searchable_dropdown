@@ -29,6 +29,9 @@ Searchable dropdown item inside a dialog
 | onClear                 | Function        | null                                                                                                             |
 | selectedValueWidgetFn   | Function        | null                                                                                                             |
 | assertUniqueValue       | bool            | true                                                                                                             |
+| keyboardType       | TextInputType            | TextInputType.text                                                                                                             |
+| validator       | Function            | null                                                                                                             |
+| label       | Function            | null                                                                                                             |
 
 
 ## Usage
@@ -91,3 +94,35 @@ It can be that the selected value doesn't correspond to a single or any items. I
 ```
 assertUniqueValue: false,
 ```
+### Label and validator
+Label and error can be returned by a function as a Widget:
+```
+      validator: (value){return(value==null?Row(
+        children: <Widget>[
+          Icon(Icons.error,color: Colors.red,size: 14,),
+          SizedBox(width: 5,),
+          Text("Mandatory",style: TextStyle(color: Colors.red,fontSize: 13),),
+        ],
+      ):null);},
+      label: (value){return(Row(
+        children: <Widget>[
+          Icon(Icons.info,color: Colors.blueAccent,size: 14,),
+          SizedBox(width: 5,),
+          Text("Oil producer",style: TextStyle(color: Colors.blueAccent,fontSize: 13),),
+        ],
+      ));},
+```
+![image](https://user-images.githubusercontent.com/32125299/74223889-f6b4ed80-4cb7-11ea-972b-bd62fcef29d8.png)
+Or as a String:
+```
+      validator: (value){return(value==null?"Mandatory":null);},
+      label: (value){return("Oil producer");},
+```
+![image](https://user-images.githubusercontent.com/32125299/74223999-311e8a80-4cb8-11ea-91a1-73f853277703.png)
+
+### Search keyboard
+The keyboard type for searches can be defined as follows:
+```
+keyboardType: TextInputType.number,
+```
+![image](https://user-images.githubusercontent.com/32125299/74224388-0a148880-4cb9-11ea-9fc3-82491474e44d.png)
