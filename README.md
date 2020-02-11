@@ -32,6 +32,7 @@ Searchable dropdown item inside a dialog
 | keyboardType       | TextInputType            | TextInputType.text                                                                                                             |
 | validator       | Function            | null                                                                                                             |
 | label       | Function            | null                                                                                                             |
+| searchFn       | Function            | null                                                                                                             |
 
 
 ## Usage
@@ -129,3 +130,29 @@ keyboardType: TextInputType.number,
 ```
 ![image](https://user-images.githubusercontent.com/32125299/74224388-0a148880-4cb9-11ea-9fc3-82491474e44d.png)
 
+### Search function
+One may wish to search through the list items differently than just by finding the keyword string matching in the toString() of the value. For example, one may wish to search with multiple keywords if they are separated by a space. The example below shows how to make use of the `searchFn` for this purpose:
+```dart
+      searchFn: (String keyword, List<DropdownMenuItem<MyData>> items) {
+        List<int> ret = List<int>();
+        if (keyword != null && items != null) {
+          keyword.split(" ").forEach((k) {
+            int i = 0;
+            items.forEach((item) {
+              if (keyword.isEmpty || (k.isNotEmpty &&
+                  (item.value.toString().toLowerCase().contains(k.toLowerCase())))) {
+                ret.add(i);
+              }
+              i++;
+            });
+          });
+        }
+        if(keyword.isEmpty){
+          ret = Iterable<int>.generate(items.length).toList();
+        }
+        return (ret);
+      },
+```
+Here is an example of result:
+
+![image](https://user-images.githubusercontent.com/32125299/74232473-29b3ad00-4cc9-11ea-94bd-fd4b64739e20.png)
