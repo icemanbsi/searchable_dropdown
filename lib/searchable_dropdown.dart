@@ -28,6 +28,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   final TextInputType keyboardType;
   final Function validator;
   final Function label;
+  final Function searchFn;
 
   SearchableDropdown({
     Key key,
@@ -54,6 +55,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.keyboardType = TextInputType.text,
     this.validator,
     this.label,
+    this.searchFn,
   })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -201,6 +203,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                   isCaseSensitiveSearch: widget.isCaseSensitiveSearch,
                   closeButtonText: widget.closeButtonText,
                   keyboardType: widget.keyboardType,
+                  searchFn: widget.searchFn,
                 );
               });
           if (widget.onChanged != null && value != null) {
@@ -327,6 +330,7 @@ class DropdownDialog<T> extends StatefulWidget {
   final bool isCaseSensitiveSearch;
   final String closeButtonText;
   final TextInputType keyboardType;
+  final Function searchFn;
 
   DropdownDialog({
     Key key,
@@ -335,6 +339,7 @@ class DropdownDialog<T> extends StatefulWidget {
     this.isCaseSensitiveSearch = false,
     this.closeButtonText,
     this.keyboardType,
+    this.searchFn,
   })  : assert(items != null),
         super(key: key);
 
@@ -350,21 +355,27 @@ class _DropdownDialogState extends State<DropdownDialog> {
   _DropdownDialogState();
 
   void _updateShownIndexes(String keyword) {
-    shownIndexes.clear();
-    int i = 0;
-    widget.items.forEach((item) {
-      bool isContains = false;
-      if (widget.isCaseSensitiveSearch) {
-        isContains = item.value.toString().contains(keyword);
-      } else {
-        isContains =
-            item.value.toString().toLowerCase().contains(keyword.toLowerCase());
-      }
-      if (keyword.isEmpty || isContains) {
-        shownIndexes.add(i);
-      }
-      i++;
-    });
+    if (widget.searchFn != null) {
+      shownIndexes = widget.searchFn(keyword, widget.items);
+    } else {
+      shownIndexes.clear();
+      int i = 0;
+      widget.items.forEach((item) {
+        bool isContains = false;
+        if (widget.isCaseSensitiveSearch) {
+          isContains = item.value.toString().contains(keyword);
+        } else {
+          isContains = item.value
+              .toString()
+              .toLowerCase()
+              .contains(keyword.toLowerCase());
+        }
+        if (keyword.isEmpty || isContains) {
+          shownIndexes.add(i);
+        }
+        i++;
+      });
+    }
   }
 
   @override
