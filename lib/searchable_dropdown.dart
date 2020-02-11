@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-const EdgeInsetsGeometry _kAlignedButtonPadding = EdgeInsetsDirectional.only(start: 16.0, end: 4.0);
+const EdgeInsetsGeometry _kAlignedButtonPadding =
+    EdgeInsetsDirectional.only(start: 16.0, end: 4.0);
 const EdgeInsets _kUnalignedButtonPadding = EdgeInsets.zero;
 
-class SearchableDropdown<T> extends StatefulWidget{
+class SearchableDropdown<T> extends StatefulWidget {
   final List<DropdownMenuItem<T>> items;
   final ValueChanged<T> onChanged;
   final T value;
@@ -22,6 +23,11 @@ class SearchableDropdown<T> extends StatefulWidget{
   final bool displayClearButton;
   final Widget clearIcon;
   final Function onClear;
+  final Function selectedValueWidgetFn;
+  final bool assertUniqueValue;
+  final TextInputType keyboardType;
+  final Function validator;
+  final Function label;
 
   SearchableDropdown({
     Key key,
@@ -43,63 +49,69 @@ class SearchableDropdown<T> extends StatefulWidget{
     this.displayClearButton = false,
     this.clearIcon = const Icon(Icons.clear),
     this.onClear,
-  }) :  assert(items != null),
+    this.selectedValueWidgetFn,
+    this.assertUniqueValue = true,
+    this.keyboardType = TextInputType.text,
+    this.validator,
+    this.label,
+  })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
         super(key: key);
 
   @override
   _SearchableDropdownState<T> createState() => new _SearchableDropdownState();
-
 }
 
 class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
-  TextStyle get _textStyle => widget.style ?? Theme.of(context).textTheme.subhead;
-  bool get _enabled => widget.items != null && widget.items.isNotEmpty && widget.onChanged != null;
+  TextStyle get _textStyle =>
+      widget.style ?? Theme.of(context).textTheme.subhead;
+  bool get _enabled =>
+      widget.items != null &&
+      widget.items.isNotEmpty &&
+      widget.onChanged != null;
   int _selectedIndex;
 
   Icon defaultIcon = Icon(Icons.arrow_drop_down);
 
-  Color get _enabledIconColor{
+  Color get _enabledIconColor {
     if (widget.iconEnabledColor != null) {
       return widget.iconEnabledColor;
     }
 
-    switch (Theme
-        .of(context)
-        .brightness) {
+    switch (Theme.of(context).brightness) {
       case Brightness.light:
         return Colors.grey.shade700;
       case Brightness.dark:
         return Colors.white70;
     }
+    return Colors.grey.shade700;
   }
 
-  Color get _disabledIconColor{
+  Color get _disabledIconColor {
     if (widget.iconDisabledColor != null) {
       return widget.iconDisabledColor;
     }
 
-    switch (Theme
-        .of(context)
-        .brightness) {
+    switch (Theme.of(context).brightness) {
       case Brightness.light:
         return Colors.grey.shade400;
       case Brightness.dark:
         return Colors.white10;
     }
+    return Colors.grey.shade400;
   }
 
   Color get _iconColor {
     // These colors are not defined in the Material Design spec.
-    if (_enabled) {
-      return(_enabledIconColor);
-    } else {
-      return(_disabledIconColor);
-    }
+    return (_enabled ? _enabledIconColor : _disabledIconColor);
+  }
 
-    assert(false);
-    return null;
+  bool get valid {
+    if (widget.validator == null) {
+      return (true);
+    }
+    return (widget.validator(widget.value) == null);
   }
 
   void _updateSelectedIndex() {
@@ -108,7 +120,12 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     }
 
     assert(widget.value == null ||
-        widget.items.where((DropdownMenuItem<T> item) => item.value == widget.value).length == 1);
+        (!widget.assertUniqueValue ||
+            widget.items
+                    .where((DropdownMenuItem<T> item) =>
+                        item.value == widget.value)
+                    .length ==
+                1));
     _selectedIndex = null;
     for (int itemIndex = 0; itemIndex < widget.items.length; itemIndex++) {
       if (widget.items[itemIndex].value == widget.value) {
@@ -132,11 +149,13 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> items = _enabled ? List<Widget>.from(widget.items) : <Widget>[];
+    final List<Widget> items =
+        _enabled ? List<Widget>.from(widget.items) : <Widget>[];
     int hintIndex;
     if (widget.hint != null || (!_enabled && widget.disabledHint != null)) {
-      final Widget emplacedHint =
-      _enabled ? widget.hint : DropdownMenuItem<Widget>(child: widget.disabledHint ?? widget.hint);
+      final Widget emplacedHint = _enabled
+          ? widget.hint
+          : DropdownMenuItem<Widget>(child: widget.disabledHint ?? widget.hint);
       hintIndex = items.length;
       items.add(DefaultTextStyle(
         style: _textStyle.copyWith(color: Theme.of(context).hintColor),
@@ -148,18 +167,60 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     }
     final int index = _enabled ? (_selectedIndex ?? hintIndex) : hintIndex;
     Widget innerItemsWidget;
-    if (items.isEmpty) {
-      innerItemsWidget = Container();
+    if (widget.selectedValueWidgetFn != null) {
+      if (items.isEmpty || _selectedIndex == null) {
+        innerItemsWidget = widget.selectedValueWidgetFn(null);
+      } else {
+        innerItemsWidget =
+            widget.selectedValueWidgetFn(widget.items[_selectedIndex].value);
+      }
     } else {
-      innerItemsWidget = IndexedStack(
-        index: index,
-        alignment: AlignmentDirectional.centerStart,
-        children: items,
-      );
+      if (items.isEmpty) {
+        innerItemsWidget = Container();
+      } else {
+        innerItemsWidget = IndexedStack(
+          index: index,
+          alignment: AlignmentDirectional.centerStart,
+          children: items,
+        );
+      }
     }
     final EdgeInsetsGeometry padding = ButtonTheme.of(context).alignedDropdown
         ? _kAlignedButtonPadding
         : _kUnalignedButtonPadding;
+
+    Widget clickable = InkWell(
+        onTap: () async {
+          T value = await showDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (context) {
+                return new DropdownDialog(
+                  items: widget.items,
+                  hint: widget.searchHint,
+                  isCaseSensitiveSearch: widget.isCaseSensitiveSearch,
+                  closeButtonText: widget.closeButtonText,
+                  keyboardType: widget.keyboardType,
+                );
+              });
+          if (widget.onChanged != null && value != null) {
+            widget.onChanged(value);
+          }
+        },
+        child: Row(
+          children: <Widget>[
+            widget.isExpanded
+                ? Expanded(child: innerItemsWidget)
+                : innerItemsWidget,
+            IconTheme(
+              data: IconThemeData(
+                color: _iconColor,
+                size: widget.iconSize,
+              ),
+              child: widget.icon ?? defaultIcon,
+            ),
+          ],
+        ));
 
     Widget result = DefaultTextStyle(
       style: _textStyle,
@@ -169,98 +230,103 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            InkWell(
-                onTap: () async {
-                  T value = await showDialog(
-                      context: context,
-                      barrierDismissible: true,
-                      builder: (context) {
-                        return new DropdownDialog(
-                            items: widget.items,
-                            hint: widget.searchHint,
-                            isCaseSensitiveSearch: widget.isCaseSensitiveSearch,
-                            closeButtonText: widget.closeButtonText
-                        );
-                      }
-                  );
-                  if (widget.onChanged != null && value != null) {
-                    widget.onChanged(value);
-                  }
-                },
-                child: Row(
-                  children: <Widget>[
-                    widget.isExpanded
-                        ? Expanded(child: innerItemsWidget)
-                        : innerItemsWidget,
-                    IconTheme(
-                      data: IconThemeData(
-                        color: _iconColor,
-                        size: widget.iconSize,
+            widget.isExpanded ? Expanded(child: clickable) : clickable,
+            !widget.displayClearButton
+                ? SizedBox()
+                : InkWell(
+                    onTap: _selectedIndex == null
+                        ? null
+                        : () {
+                            _selectedIndex = null;
+                            if (widget.onChanged != null) {
+                              widget.onChanged(null);
+                            }
+                            if (widget.onClear != null) {
+                              widget.onClear();
+                            }
+                          },
+                    child: Container(
+                      padding: padding.resolve(Directionality.of(context)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          IconTheme(
+                            data: IconThemeData(
+                              color: _selectedIndex == null
+                                  ? _disabledIconColor
+                                  : _enabledIconColor,
+                              size: widget.iconSize,
+                            ),
+                            child: widget.clearIcon ?? Icon(Icons.clear),
+                          ),
+                        ],
                       ),
-                      child: widget.icon ?? defaultIcon,
                     ),
-                  ],
-                )
-            ),
-            !widget.displayClearButton ? SizedBox() : InkWell(
-              onTap: _selectedIndex == null ? null : () {
-                _selectedIndex = null;
-                if (widget.onChanged != null) {
-                  widget.onChanged(null);
-                }
-                if (widget.onClear != null) {
-                  widget.onClear();
-                }
-              },
-              child: Container(
-                padding: padding.resolve(Directionality.of(context)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    IconTheme(
-                      data: IconThemeData(
-                        color: _selectedIndex == null ? _disabledIconColor : _enabledIconColor,
-                        size: widget.iconSize,
-                      ),
-                      child: widget.clearIcon ?? Icon(Icons.clear),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                  ),
           ],
         ),
       ),
     );
 
-    final double bottom = 8.0;// widget.isDense ? 0.0 : 8.0;
-    return new Stack(
+    final double bottom = 8.0; // widget.isDense ? 0.0 : 8.0;
+    var validatorOutput;
+    if (widget.validator != null) {
+      validatorOutput = widget.validator(widget.value);
+    }
+    var labelOutput;
+    if (widget.label != null) {
+      labelOutput = widget.label(widget.value);
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        result,
-        new Positioned(
-          left: 0.0,
-          right: 0.0,
-          bottom: bottom,
-          child: widget.underline ?? Container(
-            height: 1.0,
-            decoration: const BoxDecoration(
-                border: Border(bottom: BorderSide(color: Color(0xFFBDBDBD), width: 0.0))
+        labelOutput == null
+            ? SizedBox.shrink()
+            : (labelOutput.runtimeType == "".runtimeType
+                ? Text(
+                    labelOutput,
+                    style: TextStyle(color: Colors.blueAccent, fontSize: 13),
+                  )
+                : labelOutput),
+        new Stack(
+          children: <Widget>[
+            result,
+            new Positioned(
+              left: 0.0,
+              right: 0.0,
+              bottom: bottom,
+              child: widget.underline ??
+                  Container(
+                    height: 1.0,
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: valid ? Color(0xFFBDBDBD) : Colors.red,
+                                width: 0.0))),
+                  ),
             ),
-          ),
+          ],
         ),
+        valid
+            ? SizedBox.shrink()
+            : validatorOutput.runtimeType == "".runtimeType
+                ? Text(
+                    validatorOutput,
+                    style: TextStyle(color: Colors.red, fontSize: 13),
+                  )
+                : validatorOutput,
       ],
     );
   }
 }
 
-
 class DropdownDialog<T> extends StatefulWidget {
-
   final List<DropdownMenuItem<T>> items;
   final Widget hint;
   final bool isCaseSensitiveSearch;
   final String closeButtonText;
+  final TextInputType keyboardType;
 
   DropdownDialog({
     Key key,
@@ -268,35 +334,33 @@ class DropdownDialog<T> extends StatefulWidget {
     this.hint,
     this.isCaseSensitiveSearch = false,
     this.closeButtonText,
-  }) :  assert(items != null),
+    this.keyboardType,
+  })  : assert(items != null),
         super(key: key);
 
   _DropdownDialogState createState() => new _DropdownDialogState();
 }
 
 class _DropdownDialogState extends State<DropdownDialog> {
-
   TextEditingController txtSearch = new TextEditingController();
-  TextStyle defaultButtonStyle = new TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w500
-  );
+  TextStyle defaultButtonStyle =
+      new TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
   List<int> shownIndexes = [];
 
   _DropdownDialogState();
 
-  void _updateShownIndexes(String keyword){
+  void _updateShownIndexes(String keyword) {
     shownIndexes.clear();
     int i = 0;
     widget.items.forEach((item) {
       bool isContains = false;
-      if(widget.isCaseSensitiveSearch){
+      if (widget.isCaseSensitiveSearch) {
         isContains = item.value.toString().contains(keyword);
+      } else {
+        isContains =
+            item.value.toString().toLowerCase().contains(keyword.toLowerCase());
       }
-      else{
-        isContains = item.value.toString().toLowerCase().contains(keyword.toLowerCase());
-      }
-      if(keyword.isEmpty || isContains){
+      if (keyword.isEmpty || isContains) {
         shownIndexes.add(i);
       }
       i++;
@@ -312,15 +376,9 @@ class _DropdownDialogState extends State<DropdownDialog> {
   @override
   Widget build(BuildContext context) {
     return new Card(
-      margin: EdgeInsets.symmetric(
-          vertical: 32,
-          horizontal: 24
-      ),
+      margin: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
       child: new Container(
-        padding: EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 20
-        ),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -338,13 +396,11 @@ class _DropdownDialogState extends State<DropdownDialog> {
 
   Widget titleBar() {
     return widget.hint != null
-      ? new Container(
-          margin: EdgeInsets.only(
-              bottom: 8
-          ),
-          child: widget.hint,
-        )
-      : new Container();
+        ? new Container(
+            margin: EdgeInsets.only(bottom: 8),
+            child: widget.hint,
+          )
+        : new Container();
   }
 
   Widget searchBar() {
@@ -354,18 +410,14 @@ class _DropdownDialogState extends State<DropdownDialog> {
           new TextField(
             controller: txtSearch,
             decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(
-                    horizontal: 32,
-                    vertical: 12
-                )
-            ),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 32, vertical: 12)),
             autofocus: true,
             onChanged: (value) {
               _updateShownIndexes(value);
-              setState(() {
-
-              });
+              setState(() {});
             },
+            keyboardType: widget.keyboardType,
           ),
           new Positioned(
             left: 0,
@@ -380,31 +432,31 @@ class _DropdownDialogState extends State<DropdownDialog> {
           ),
           txtSearch.text.isNotEmpty
               ? new Positioned(
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: new Center(
-              child: new InkWell(
-                onTap: (){
-                  _updateShownIndexes('');
-                  setState(() {
-                    txtSearch.text = '';
-                  });
-                },
-                borderRadius: BorderRadius.all(Radius.circular(32)),
-                child: new Container(
-                  width: 32,
-                  height: 32,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
                   child: new Center(
-                    child: new Icon(
-                      Icons.close,
-                      size: 24,
+                    child: new InkWell(
+                      onTap: () {
+                        _updateShownIndexes('');
+                        setState(() {
+                          txtSearch.text = '';
+                        });
+                      },
+                      borderRadius: BorderRadius.all(Radius.circular(32)),
+                      child: new Container(
+                        width: 32,
+                        height: 32,
+                        child: new Center(
+                          child: new Icon(
+                            Icons.close,
+                            size: 24,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ),
-          )
+                )
               : new Container(),
         ],
       ),
@@ -417,7 +469,7 @@ class _DropdownDialogState extends State<DropdownDialog> {
         itemBuilder: (context, index) {
           DropdownMenuItem item = widget.items[shownIndexes[index]];
           return new InkWell(
-            onTap: (){
+            onTap: () {
               Navigator.pop(context, item.value);
             },
             child: item,
@@ -435,13 +487,10 @@ class _DropdownDialogState extends State<DropdownDialog> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           new FlatButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pop(context);
             },
-            child: new Text(
-                widget.closeButtonText,
-                style: defaultButtonStyle
-            ),
+            child: new Text(widget.closeButtonText, style: defaultButtonStyle),
           )
         ],
       ),
