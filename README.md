@@ -71,6 +71,7 @@ Widget widget() {
    );
 }
 ```
+
 ### Values
 Values of the `DropdownMenuItem` objects must be strings or implement the `toString()` method. Those strings are used for the search.
 
@@ -94,6 +95,7 @@ It can be that the selected value doesn't correspond to a single or any items. I
 ```
 assertUniqueValue: false,
 ```
+
 ### Label and validator
 Label and error can be returned by a function as a Widget:
 ```
@@ -126,3 +128,4 @@ The keyboard type for searches can be defined as follows:
 keyboardType: TextInputType.number,
 ```
 ![image](https://user-images.githubusercontent.com/32125299/74224388-0a148880-4cb9-11ea-9fc3-82491474e44d.png)
+
