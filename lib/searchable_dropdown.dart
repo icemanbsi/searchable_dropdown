@@ -29,6 +29,12 @@ class SearchableDropdown<T> extends StatefulWidget {
   final Function validator;
   final Function label;
   final Function searchFn;
+  final bool multipleSelection;
+  List<int> selectedItems;
+  final Function displayItemWhenMultiple;
+  final String doneText;
+  final Function doneButtonFn;
+  final Function onChangedMultiple;
 
   SearchableDropdown({
     Key key,
@@ -56,10 +62,20 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.validator,
     this.label,
     this.searchFn,
+    this.multipleSelection = false,
+    this.selectedItems,
+    this.displayItemWhenMultiple,
+    this.doneText = "Done",
+    this.doneButtonFn,
+    this.onChangedMultiple,
   })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
-        super(key: key);
+        super(key: key) {
+    if (multipleSelection && selectedItems == null) {
+      selectedItems = List<int>();
+    }
+  }
 
   @override
   _SearchableDropdownState<T> createState() => new _SearchableDropdownState();
@@ -113,26 +129,36 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     if (widget.validator == null) {
       return (true);
     }
-    return (widget.validator(widget.value) == null);
+    return (widget.validator(
+            widget.multipleSelection ? widget.selectedItems : widget.value) ==
+        null);
+  }
+
+  bool get hasSelection {
+    if (widget.multipleSelection) {
+      return (widget.selectedItems != null && widget.selectedItems.isNotEmpty);
+    }
+    return (_selectedIndex != null);
   }
 
   void _updateSelectedIndex() {
     if (!_enabled) {
       return;
     }
-
-    assert(widget.value == null ||
-        (!widget.assertUniqueValue ||
-            widget.items
-                    .where((DropdownMenuItem<T> item) =>
-                        item.value == widget.value)
-                    .length ==
-                1));
-    _selectedIndex = null;
-    for (int itemIndex = 0; itemIndex < widget.items.length; itemIndex++) {
-      if (widget.items[itemIndex].value == widget.value) {
-        _selectedIndex = itemIndex;
-        return;
+    if (!widget.multipleSelection) {
+      assert(widget.value == null ||
+          (!widget.assertUniqueValue ||
+              widget.items
+                      .where((DropdownMenuItem<T> item) =>
+                          item.value == widget.value)
+                      .length ==
+                  1));
+      _selectedIndex = null;
+      for (int itemIndex = 0; itemIndex < widget.items.length; itemIndex++) {
+        if (widget.items[itemIndex].value == widget.value) {
+          _selectedIndex = itemIndex;
+          return;
+        }
       }
     }
   }
@@ -169,22 +195,38 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     }
     final int index = _enabled ? (_selectedIndex ?? hintIndex) : hintIndex;
     Widget innerItemsWidget;
-    if (widget.selectedValueWidgetFn != null) {
-      if (items.isEmpty || _selectedIndex == null) {
-        innerItemsWidget = widget.selectedValueWidgetFn(null);
+    if (widget.multipleSelection) {
+      List<Widget> list = List<Widget>();
+      widget.selectedItems.forEach((item) {
+        list.add(widget.selectedValueWidgetFn != null
+            ? widget.selectedValueWidgetFn(widget.items[item].value)
+            : items[item]);
+      });
+      if (list.isEmpty && hintIndex != null) {
+        innerItemsWidget = items[hintIndex];
       } else {
-        innerItemsWidget =
-            widget.selectedValueWidgetFn(widget.items[_selectedIndex].value);
+        innerItemsWidget = Column(
+          children: list,
+        );
       }
     } else {
-      if (items.isEmpty) {
-        innerItemsWidget = Container();
+      if (widget.selectedValueWidgetFn != null) {
+        if (items.isEmpty || _selectedIndex == null) {
+          innerItemsWidget = widget.selectedValueWidgetFn(null);
+        } else {
+          innerItemsWidget =
+              widget.selectedValueWidgetFn(widget.items[_selectedIndex].value);
+        }
       } else {
-        innerItemsWidget = IndexedStack(
-          index: index,
-          alignment: AlignmentDirectional.centerStart,
-          children: items,
-        );
+        if (items.isEmpty) {
+          innerItemsWidget = Container();
+        } else {
+          innerItemsWidget = IndexedStack(
+            index: index,
+            alignment: AlignmentDirectional.centerStart,
+            children: items,
+          );
+        }
       }
     }
     final EdgeInsetsGeometry padding = ButtonTheme.of(context).alignedDropdown
@@ -204,9 +246,20 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                   closeButtonText: widget.closeButtonText,
                   keyboardType: widget.keyboardType,
                   searchFn: widget.searchFn,
+                  multipleSelection: widget.multipleSelection,
+                  selectedItems: widget.selectedItems,
+                  displayItemWhenMultiple: widget.displayItemWhenMultiple,
+                  doneText: widget.doneText,
+                  doneButtonFn: widget.doneButtonFn,
                 );
               });
-          if (widget.onChanged != null && value != null) {
+          if (widget.multipleSelection) {
+            if (widget.onChangedMultiple != null &&
+                widget.selectedItems != null) {
+              widget.onChangedMultiple(widget.selectedItems);
+            }
+            setState(() {});
+          } else if (widget.onChanged != null && value != null) {
             widget.onChanged(value);
           }
         },
@@ -237,17 +290,11 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
             !widget.displayClearButton
                 ? SizedBox()
                 : InkWell(
-                    onTap: _selectedIndex == null
-                        ? null
-                        : () {
-                            _selectedIndex = null;
-                            if (widget.onChanged != null) {
-                              widget.onChanged(null);
-                            }
-                            if (widget.onClear != null) {
-                              widget.onClear();
-                            }
-                          },
+                    onTap: hasSelection
+                        ? () {
+                            clearSelection();
+                          }
+                        : null,
                     child: Container(
                       padding: padding.resolve(Directionality.of(context)),
                       child: Row(
@@ -256,9 +303,9 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                         children: <Widget>[
                           IconTheme(
                             data: IconThemeData(
-                              color: _selectedIndex == null
-                                  ? _disabledIconColor
-                                  : _enabledIconColor,
+                              color: hasSelection
+                                  ? _enabledIconColor
+                                  : _disabledIconColor,
                               size: widget.iconSize,
                             ),
                             child: widget.clearIcon ?? Icon(Icons.clear),
@@ -275,7 +322,8 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     final double bottom = 8.0; // widget.isDense ? 0.0 : 8.0;
     var validatorOutput;
     if (widget.validator != null) {
-      validatorOutput = widget.validator(widget.value);
+      validatorOutput = widget.validator(
+          widget.multipleSelection ? widget.selectedItems : widget.value);
     }
     var labelOutput;
     if (widget.label != null) {
@@ -322,6 +370,26 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       ],
     );
   }
+
+  clearSelection() {
+    if (widget.multipleSelection) {
+      widget.selectedItems.clear();
+      if (widget.onChangedMultiple != null) {
+        widget.onChangedMultiple(widget.selectedItems);
+      }
+    } else {
+      _selectedIndex = null;
+      if (widget.onChanged != null) {
+        widget.onChanged(null);
+      }
+    }
+    if (widget.onClear != null) {
+      widget.onClear();
+    }
+    if (widget.multipleSelection) {
+      setState(() {});
+    }
+  }
 }
 
 class DropdownDialog<T> extends StatefulWidget {
@@ -331,6 +399,11 @@ class DropdownDialog<T> extends StatefulWidget {
   final String closeButtonText;
   final TextInputType keyboardType;
   final Function searchFn;
+  final bool multipleSelection;
+  List<int> selectedItems;
+  final Function displayItemWhenMultiple;
+  final String doneText;
+  final Function doneButtonFn;
 
   DropdownDialog({
     Key key,
@@ -340,6 +413,11 @@ class DropdownDialog<T> extends StatefulWidget {
     this.closeButtonText,
     this.keyboardType,
     this.searchFn,
+    this.multipleSelection,
+    this.selectedItems,
+    this.displayItemWhenMultiple,
+    this.doneText,
+    this.doneButtonFn,
   })  : assert(items != null),
         super(key: key);
 
@@ -406,12 +484,30 @@ class _DropdownDialogState extends State<DropdownDialog> {
   }
 
   Widget titleBar() {
+    Widget closeButton = widget.multipleSelection
+        ? (widget.doneButtonFn != null
+            ? widget.doneButtonFn(context)
+            : FlatButton.icon(
+                onPressed: () {
+                  Navigator.pop(context);
+                  setState(() {});
+                },
+                icon: Icon(Icons.close),
+                label: Text(widget.doneText)))
+        : SizedBox.shrink();
     return widget.hint != null
         ? new Container(
             margin: EdgeInsets.only(bottom: 8),
-            child: widget.hint,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  widget.hint,
+                  closeButton,
+                ]),
           )
-        : new Container();
+        : new Container(
+            child: closeButton,
+          );
   }
 
   Widget searchBar() {
@@ -481,9 +577,34 @@ class _DropdownDialogState extends State<DropdownDialog> {
           DropdownMenuItem item = widget.items[shownIndexes[index]];
           return new InkWell(
             onTap: () {
-              Navigator.pop(context, item.value);
+              if (widget.multipleSelection) {
+                setState(() {
+                  if (widget.selectedItems.contains(shownIndexes[index])) {
+                    widget.selectedItems.remove(shownIndexes[index]);
+                  } else {
+                    widget.selectedItems.add(shownIndexes[index]);
+                  }
+                });
+              } else {
+                Navigator.pop(context, item.value);
+              }
             },
-            child: item,
+            child: widget.multipleSelection
+                ? widget.displayItemWhenMultiple == null
+                    ? (Row(children: [
+                        Icon(
+                          widget.selectedItems.contains(shownIndexes[index])
+                              ? Icons.check_box
+                              : Icons.check_box_outline_blank,
+                        ),
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Flexible(child: item),
+                      ]))
+                    : widget.displayItemWhenMultiple(item,
+                        widget.selectedItems.contains(shownIndexes[index]))
+                : item,
           );
         },
         itemCount: shownIndexes.length,
