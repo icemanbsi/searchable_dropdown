@@ -1,5 +1,5 @@
 name: searchable_dropdown
-description: Searchable dropdown inside a dialog with flexibility on clear button, validator, label, icons, colors, keyboard
+description: Searchable dropdown inside a dialog with flexibility on clear button, validator, label, icons, colors, keyboard, search logic and single or multiple selection
 version: 1.1.1
 author: Bobby Stenly<iceman.bsi@gmail.com>
 homepage: https://github.com/icemanbsi/searchable_dropdown
