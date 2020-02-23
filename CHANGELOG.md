@@ -1,3 +1,7 @@
+## 1.0.1
+
+* CI/CD improved automated deployment
+
 ## 0.0.1
 
 Improvements on a pull request that was probably changing too many things to be accepted of the great icemanbsi's searchable_dropdown:
