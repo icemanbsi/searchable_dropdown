@@ -1,22 +1,22 @@
 PODS:
   - Flutter (1.0.0)
-  - searchable_dropdown (0.0.1):
+  - search_choices (0.0.1):
     - Flutter
 
 DEPENDENCIES:
-  - Flutter (from `.symlinks/flutter/ios`)
-  - searchable_dropdown (from `.symlinks/plugins/searchable_dropdown/ios`)
+  - Flutter (from `Flutter`)
+  - search_choices (from `.symlinks/plugins/search_choices/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: ".symlinks/flutter/ios"
-  searchable_dropdown:
-    :path: ".symlinks/plugins/searchable_dropdown/ios"
+    :path: Flutter
+  search_choices:
+    :path: ".symlinks/plugins/search_choices/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
-  searchable_dropdown: b3fd8c1d4c5704ff51b21f4c99a9f73b057269ee
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  search_choices: b50731e8c425078048f681f39c34375c58d6ce8d
 
-PODFILE CHECKSUM: aff02bfeed411c636180d6812254b2daeea14d09
+PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.7.2
