@@ -1,6 +1,6 @@
 name: search_choices
 description: Widget to let the user search through a keyword string typed on a customizable keyboard in a single or multiple choices list presented as a dropdown in a dialog box or a menu.
-version: 0.0.1
+version: 1.0.1
 homepage: https://github.com/lcuis/search_choices
 repository: https://github.com/lcuis/search_choices
 issue_tracker: https://github.com/lcuis/search_choices/issues

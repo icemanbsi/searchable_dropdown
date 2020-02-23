@@ -309,7 +309,7 @@ class _SearchChoicesState<T> extends State<SearchChoices<T>> {
   List<bool> displayMenu = [false];
 
   TextStyle get _textStyle =>
-      widget.style ?? Theme.of(context).textTheme.subtitle1;
+      widget.style ?? Theme.of(context).textTheme.subhead;
   bool get _enabled =>
       widget.items != null &&
       widget.items.isNotEmpty &&
