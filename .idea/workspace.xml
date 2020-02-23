@@ -4,9 +4,6 @@
     <list default="true" id="bea48b16-f699-42a1-81a3-bf05614b867c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.github/workflows/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -43,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.github/workflows/main.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="165">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -192,7 +189,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582493563885</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="CI/CD pushes to pub.dev automatically on push/merge">
+      <created>1582494598141</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582494598141</updated>
+    </task>
+    <task id="LOCAL-00004" summary="CI/CD pushes to pub.dev automatically on push/merge">
+      <created>1582494925500</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582494925500</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -204,7 +215,7 @@
     <frame x="0" y="0" width="1920" height="1044" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2497332" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2497332" />
       <window_info id="Captures" order="1" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -214,14 +225,14 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32751092" />
-      <window_info anchor="bottom" id="Run" order="1" visible="true" weight="0.32969433" />
+      <window_info anchor="bottom" id="Run" order="1" weight="0.32969433" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="4" />
       <window_info anchor="bottom" id="Debug" order="5" />
       <window_info anchor="bottom" id="Terminal" order="6" weight="0.32969433" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32969433" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32969433" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32969433" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -235,7 +246,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="New with this repository:&#10;* demo app with a gallery as tabs or as a single page (change through a switch)&#10;* automated testing&#10;* continuous integration (CI)&#10;* continuous deployment (CD)&#10;* license is MIT&#10;* split constructors between single and multiple selection&#10;* comments on the constructors&#10;* selection can be done in a menu, not just a dialog box&#10;* solution to allow flexibility to provide a String, a Widget or a Function that returns either one of String or Widget for several components of the Widget&#10;* documentation&#10;* keyboard doesn't overlap dialog" />
     <MESSAGE value="removed gif images from readme for smaller package" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed gif images from readme for smaller package" />
+    <MESSAGE value="CI/CD pushes to pub.dev automatically on push/merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="CI/CD pushes to pub.dev automatically on push/merge" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lib/search_choices_for_push.dart" />
@@ -294,8 +306,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.github/workflows/main.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="165">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
         </state>
       </provider>
     </entry>
