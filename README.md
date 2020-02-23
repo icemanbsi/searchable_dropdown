@@ -16,18 +16,18 @@ See code below.
 
 | Example name | Demonstration |
 | --- | --- |
-| [Single dialog](#Single-dialog) | ![Single dialog](doc/Single%20dialog.gif) |
-| [Multi dialog](#Multi-dialog) | ![Multi dialog](doc/Multi%20dialog.gif) |
-| [Single done button<br>dialog](#Single-done-button-dialog) | ![Single done button dialog](doc/Single%20done%20button%20dialog.gif) |
-| [Multi custom display<br>dialog](#Multi-custom-display-dialog) | ![Multi custom display dialog](doc/Multi%20custom%20display%20dialog.gif) |
-| [Multi select 3 dialog](#Multi-select-3-dialog) | ![Multi select 3 dialog](doc/Multi%20select%203%20dialog.gif) |
-| [Single menu](#Single-menu) | ![Single menu](doc/Single%20menu.gif) |
-| [Multi menu](#Multi-menu) | ![Multi menu](doc/Multi%20menu.gif) |
-| [Multi menu select<br>all/none](#Multi-menu-select-allnone) | ![Multi menu select all or none](doc/Multi%20menu%20select%20all%20or%20none.gif) |
-| [Multi dialog select<br>all/none without clear](#Multi-dialog-select-allnone-without-clear) | ![Multi dialog select all or none without clear](doc/Multi%20dialog%20select%20all%20or%20none%20without%20clear.gif) |
-| [Single dialog custom<br>keyboard](#Single-dialog-custom-keyboard) | ![Single dialog custom keyboard](doc/Single%20dialog%20custom%20keyboard.gif) |
-| [Single dialog object](#Single-dialog-object) | ![Single dialog object](doc/Single%20dialog%20object.gif) |
-| [Single dialog overflow](#Single-dialog-overflow) | ![Single dialog overflow](doc/Single%20dialog%20overflow.gif) |
+| [Single dialog](#Single-dialog) | ![Single dialog](https://searchchoices.jod.li/Single%20dialog.gif) |
+| [Multi dialog](#Multi-dialog) | ![Multi dialog](https://searchchoices.jod.li/Multi%20dialog.gif) |
+| [Single done button<br>dialog](#Single-done-button-dialog) | ![Single done button dialog](https://searchchoices.jod.li/Single%20done%20button%20dialog.gif) |
+| [Multi custom display<br>dialog](#Multi-custom-display-dialog) | ![Multi custom display dialog](https://searchchoices.jod.li/Multi%20custom%20display%20dialog.gif) |
+| [Multi select 3 dialog](#Multi-select-3-dialog) | ![Multi select 3 dialog](https://searchchoices.jod.li/Multi%20select%203%20dialog.gif) |
+| [Single menu](#Single-menu) | ![Single menu](https://searchchoices.jod.li/Single%20menu.gif) |
+| [Multi menu](#Multi-menu) | ![Multi menu](https://searchchoices.jod.li/Multi%20menu.gif) |
+| [Multi menu select<br>all/none](#Multi-menu-select-allnone) | ![Multi menu select all or none](https://searchchoices.jod.li/Multi%20menu%20select%20all%20or%20none.gif) |
+| [Multi dialog select<br>all/none without clear](#Multi-dialog-select-allnone-without-clear) | ![Multi dialog select all or none without clear](https://searchchoices.jod.li/Multi%20dialog%20select%20all%20or%20none%20without%20clear.gif) |
+| [Single dialog custom<br>keyboard](#Single-dialog-custom-keyboard) | ![Single dialog custom keyboard](https://searchchoices.jod.li/Single%20dialog%20custom%20keyboard.gif) |
+| [Single dialog object](#Single-dialog-object) | ![Single dialog object](https://searchchoices.jod.li/Single%20dialog%20object.gif) |
+| [Single dialog overflow](#Single-dialog-overflow) | ![Single dialog overflow](https://searchchoices.jod.li/Single%20dialog%20overflow.gif) |
 
 ### Demonstration
 
