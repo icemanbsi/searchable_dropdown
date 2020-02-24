@@ -2,7 +2,7 @@
 
 Widget to let the user search through a keyword string typed on a customizable keyboard in a single or multiple choices list presented as a dropdown in a dialog box or a menu.
 
-## Plateforms
+## Platforms
 
 This widget has been successfully tested on iOS, Android and Chrome.
 
@@ -44,6 +44,16 @@ https://searchchoices.jod.li/app-release.apk
 Add to your `pubspec.yaml` in the `dependencies` section:
 ```
   search_choices:
+```
+
+Get packages with command:
+```
+flutter packages get
+```
+
+Import:
+```dart
+import 'package:search_choices/search_choices.dart';
 ```
 
 Call either the single choice or the multiple choice constructor.
@@ -659,3 +669,7 @@ In your pull request, feel free to add your line in the contributors section bel
 ### Contributors
 * (great initial project) https://github.com/icemanbsi/searchable_dropdown/pull/11
 * https://github.com/lcuis
+
+## CI/CD
+
+Continuous integration/deployment status: ![CI](https://github.com/lcuis/search_choices/workflows/CI/badge.svg)
