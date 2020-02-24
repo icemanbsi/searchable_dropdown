@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - searchable_dropdown (1.1.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - searchable_dropdown (from `.symlinks/plugins/searchable_dropdown/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  searchable_dropdown:
+    :path: ".symlinks/plugins/searchable_dropdown/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  searchable_dropdown: 5058be32fdc5e0481d300ff2087129072e71bd62
+
+PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
+
+COCOAPODS: 1.8.4
