@@ -1,0 +1,68 @@
+name: CI-CD
+
+on: [push,pull_request]
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+# publishing to pub.dev is only possible from Linux apparently
+#        os: [macos-latest]
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'dev'
+      - run: flutter pub get
+      - run: flutter format .
+# pub.dev removes points because of an error on textTheme.subhead -> textTheme.subtitle1 (warning that would occur is the following line remained)
+#      - run: flutter analyze
+      - run: flutter config --enable-web
+      - run: flutter test
+
+      - name: Publish
+        uses: sakebook/actions-flutter-pub-publisher@v1.2.1
+        with:
+          credential: ${{ secrets.CREDENTIAL_JSON }}
+          flutter_package: false
+          skip_test: true
+
+      - run: pushd example&&flutter build web
+      - name: Deploy web
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: example/build/web
+          remote: fromgithub/
+          host: ${{ secrets.jodhost }}
+          username: ${{ secrets.jodsshuser }}
+          password: ${{ secrets.jodsshpassword }}
+          recursive: true
+      - run: pushd example&&flutter build apk --release
+      - name: Deploy apk
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: example/build/app/outputs/apk/release
+          remote: fromgithub/
+          host: ${{ secrets.jodhost }}
+          username: ${{ secrets.jodsshuser }}
+          password: ${{ secrets.jodsshpassword }}
+          recursive: true
+
+
+# ios build fails apparently because of missing signature despite the --no-codesign parameter
+#      - run: pushd example&&flutter build ios --release --no-codesign
+#      - name: Deploy ios
+#        uses: garygrossgarten/github-action-scp@release
+#        with:
+#          local: example/build/ios/iphoneos/Runner.app
+#          remote: fromgithub/
+#          host: ${{ secrets.jodhost }}
+#          username: ${{ secrets.jodsshuser }}
+#          password: ${{ secrets.jodsshpassword }}
+#          recursive: true

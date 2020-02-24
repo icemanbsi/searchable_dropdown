@@ -1,8 +1,9 @@
-name: searchable_dropdown
-description: Searchable dropdown inside a dialog
-version: 1.1.0
-author: Bobby Stenly<iceman.bsi@gmail.com>
-homepage: https://github.com/icemanbsi/searchable_dropdown
+name: search_choices
+description: Widget to let the user search through a keyword string typed on a customizable keyboard in a single or multiple choices list presented as a dropdown in a dialog box or a menu.
+version: 1.0.3
+homepage: https://github.com/lcuis/search_choices
+repository: https://github.com/lcuis/search_choices
+issue_tracker: https://github.com/lcuis/search_choices/issues
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -16,7 +17,7 @@ dev_dependencies:
     sdk: flutter
 
 # For information on the generic Dart part of this file, see the
-# following page: https://www.dartlang.org/tools/pub/pubspec
+# following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
@@ -25,8 +26,8 @@ flutter:
   # be modified. They are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
   plugin:
-    androidPackage: com.bobbystenly.searchable_dropdown
-    pluginClass: SearchableDropdownPlugin
+    androidPackage: li.jod.search_choices
+    pluginClass: SearchChoicesPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
@@ -34,10 +35,10 @@ flutter:
   #  - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see
-  # https://flutter.io/assets-and-images/#from-packages
+  # https://flutter.dev/assets-and-images/#from-packages
   #
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.io/assets-and-images/#resolution-aware.
+  # https://flutter.dev/assets-and-images/#resolution-aware.
 
   # To add custom fonts to your plugin package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -57,4 +58,4 @@ flutter:
   #         weight: 700
   #
   # For details regarding fonts in packages, see
-  # https://flutter.io/custom-fonts/#from-packages
+  # https://flutter.dev/custom-fonts/#from-packages
