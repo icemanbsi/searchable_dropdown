@@ -4,6 +4,7 @@
     <list default="true" id="bea48b16-f699-42a1-81a3-bf05614b867c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -27,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/lib/search_choices.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
-              <caret line="311" column="57" lean-forward="true" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="57" />
+              <caret line="311" column="57" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -36,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="14" lean-forward="true" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+              <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -54,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+              <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -67,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+            <state relative-caret-position="840">
+              <caret line="56" selection-start-line="56" selection-end-line="56" />
             </state>
           </provider>
         </entry>
@@ -77,9 +78,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>](doc/</find>
       <find>union</find>
       <find>subtitle1</find>
+      <find>](doc/</find>
     </findStrings>
     <replaceStrings>
       <replace>](https://searchchoices.jod.li/</replace>
@@ -91,11 +92,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/lib/search_choices.dart" />
         <option value="$PROJECT_DIR$/.github/workflows/main.yml" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/CHANGELOG.md" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
       </list>
     </option>
   </component>
@@ -224,7 +225,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582495539119</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="CI/CD pushes to pub.dev automatically on push/merge">
+      <created>1582495823399</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1582495823399</updated>
+    </task>
+    <task id="LOCAL-00008" summary="minor improvements to README">
+      <created>1582514148369</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1582514148369</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -268,7 +283,8 @@
     <MESSAGE value="New with this repository:&#10;* demo app with a gallery as tabs or as a single page (change through a switch)&#10;* automated testing&#10;* continuous integration (CI)&#10;* continuous deployment (CD)&#10;* license is MIT&#10;* split constructors between single and multiple selection&#10;* comments on the constructors&#10;* selection can be done in a menu, not just a dialog box&#10;* solution to allow flexibility to provide a String, a Widget or a Function that returns either one of String or Widget for several components of the Widget&#10;* documentation&#10;* keyboard doesn't overlap dialog" />
     <MESSAGE value="removed gif images from readme for smaller package" />
     <MESSAGE value="CI/CD pushes to pub.dev automatically on push/merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="CI/CD pushes to pub.dev automatically on push/merge" />
+    <MESSAGE value="minor improvements to README" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor improvements to README" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lib/search_choices_for_push.dart" />
@@ -301,24 +317,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="14" lean-forward="true" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/search_choices.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="311" column="57" lean-forward="true" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="57" />
+          <caret line="311" column="57" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -329,10 +331,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
         </state>
       </provider>
     </entry>

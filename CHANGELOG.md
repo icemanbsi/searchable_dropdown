@@ -1,3 +1,7 @@
+## 1.0.2
+
+* minor improvements to README
+
 ## 1.0.1
 
 * CI/CD improved automated deployment
