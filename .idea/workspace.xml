@@ -1,11 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bea48b16-f699-42a1-81a3-bf05614b867c" name="Default Changelist" comment="">
+    <list default="true" id="f53f6411-d5b7-4da4-a0af-474573758339" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/doc/images/Multi custom display dialog.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Multi dialog select all or none without clear.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Multi dialog.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Multi menu select all or none.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Multi menu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Multi select 3 dialog.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Single dialog custom keyboard.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Single dialog object.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Single dialog overflow.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Single dialog.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Single done button dialog.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/Single menu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/searchable_dropdown.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/li/jod/search_choices/SearchChoicesPlugin.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/li/jod/search_choices_for_push/SearchChoicesForPushPlugin.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/li/jod/search_choices_web/SearchChoicesWebPlugin.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/assets/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/kotlin/li/jod/search_choices_example/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/kotlin/li/jod/search_choices_for_push_example/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/kotlin/li/jod/search_choices_web_example/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/profile/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/profile/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/Debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/Release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Podfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Podfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/example/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/web/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/example/web/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_service_worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/SearchChoicesForPushPlugin.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/SearchChoicesForPushPlugin.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/SearchChoicesPlugin.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/SearchChoicesPlugin.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftSearchChoicesForPushPlugin.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftSearchChoicesPlugin.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/search_choices.podspec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/search_choices_for_push.podspec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/search_choices.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/searchable_dropdown.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.dart.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.dart.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search_choices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/search_choices_for_push.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/search_choices_web.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/search_choices_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/searchable_dropdown_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/assets/AssetManifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/assets/FontManifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/assets/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/assets/fonts/MaterialIcons-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/assets/packages/cupertino_icons/assets/CupertinoIcons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/flutter_service_worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/icons/Icon-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/icons/Icon-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/main.dart.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/main.dart.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webforpub/manifest.json" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -26,10 +103,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/search_choices.dart">
+        <entry file="file://$PROJECT_DIR$/lib/searchable_dropdown.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="311" column="57" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="57" />
+            <state relative-caret-position="135">
+              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -37,8 +126,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+            <state relative-caret-position="420">
+              <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/android/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -46,31 +144,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.github/workflows/main.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="9" selection-start-column="9" selection-end-column="9" />
+            <state relative-caret-position="330">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+        <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="8" selection-start-column="8" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="674" column="117" selection-start-line="674" selection-start-column="117" selection-end-line="674" selection-end-column="117" />
+            <state relative-caret-position="75">
+              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,25 +166,35 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>union</find>
-      <find>subtitle1</find>
-      <find>](doc/</find>
+      <find>search_choices</find>
+      <find>Choices</find>
+      <find>mainclass</find>
+      <find>searcha</find>
+      <find>example</find>
     </findStrings>
     <replaceStrings>
-      <replace>](https://searchchoices.jod.li/</replace>
+      <replace>searchable_dropdown</replace>
+      <replace>SearchableDropdown</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/search_choices.dart" />
-        <option value="$PROJECT_DIR$/.github/workflows/main.yml" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/CHANGELOG.md" />
+        <option value="$PROJECT_DIR$/manifest.json" />
+        <option value="$PROJECT_DIR$/LICENSE" />
+        <option value="$PROJECT_DIR$/assets/LICENSE" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/android/build.gradle" />
+        <option value="$PROJECT_DIR$/.github/workflows/main.yml" />
       </list>
     </option>
   </component>
@@ -112,36 +209,20 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="search_choices_for_push" type="b2602c69:ProjectViewProjectNode" />
-              <item name="search_choices_for_push" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="search_choices_for_push" type="b2602c69:ProjectViewProjectNode" />
-              <item name="search_choices_for_push" type="462c0819:PsiDirectoryNode" />
-              <item name=".github" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="search_choices_for_push" type="b2602c69:ProjectViewProjectNode" />
-              <item name="search_choices_for_push" type="462c0819:PsiDirectoryNode" />
-              <item name=".github" type="462c0819:PsiDirectoryNode" />
-              <item name="workflows" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="search_choices_for_push" type="b2602c69:ProjectViewProjectNode" />
-              <item name="search_choices_for_push" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="searchable_dropdown" type="b2602c69:ProjectViewProjectNode" />
+              <item name="searchable_dropdown" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -165,7 +246,7 @@
   </component>
   <component name="RunManager" selected="Flutter.example/lib/main.dart">
     <configuration name="tests" type="FlutterTestConfigType" factoryName="Flutter Test">
-      <option name="testFile" value="$PROJECT_DIR$/test/search_choices_test.dart" />
+      <option name="testFile" value="$PROJECT_DIR$/test/searchable_dropdown_test.dart" />
       <method v="2" />
     </configuration>
     <list>
@@ -178,89 +259,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bea48b16-f699-42a1-81a3-bf05614b867c" name="Default Changelist" comment="" />
-      <created>1582486857743</created>
+      <changelist id="f53f6411-d5b7-4da4-a0af-474573758339" name="Default Changelist" comment="" />
+      <created>1582538551287</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1582486857743</updated>
+      <updated>1582538551287</updated>
     </task>
-    <task id="LOCAL-00001" summary="New with this repository:&#10;* demo app with a gallery as tabs or as a single page (change through a switch)&#10;* automated testing&#10;* continuous integration (CI)&#10;* continuous deployment (CD)&#10;* license is MIT&#10;* split constructors between single and multiple selection&#10;* comments on the constructors&#10;* selection can be done in a menu, not just a dialog box&#10;* solution to allow flexibility to provide a String, a Widget or a Function that returns either one of String or Widget for several components of the Widget&#10;* documentation&#10;* keyboard doesn't overlap dialog">
-      <created>1582492143321</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1582492143321</updated>
-    </task>
-    <task id="LOCAL-00002" summary="removed gif images from readme for smaller package">
-      <created>1582493563885</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1582493563885</updated>
-    </task>
-    <task id="LOCAL-00003" summary="CI/CD pushes to pub.dev automatically on push/merge">
-      <created>1582494598141</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1582494598141</updated>
-    </task>
-    <task id="LOCAL-00004" summary="CI/CD pushes to pub.dev automatically on push/merge">
-      <created>1582494925500</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1582494925500</updated>
-    </task>
-    <task id="LOCAL-00005" summary="CI/CD pushes to pub.dev automatically on push/merge">
-      <created>1582495214370</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1582495214370</updated>
-    </task>
-    <task id="LOCAL-00006" summary="CI/CD pushes to pub.dev automatically on push/merge">
-      <created>1582495539119</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1582495539119</updated>
-    </task>
-    <task id="LOCAL-00007" summary="CI/CD pushes to pub.dev automatically on push/merge">
-      <created>1582495823399</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1582495823399</updated>
-    </task>
-    <task id="LOCAL-00008" summary="minor improvements to README">
-      <created>1582514148369</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1582514148369</updated>
-    </task>
-    <task id="LOCAL-00009" summary="minor improvements to README">
-      <created>1582514603957</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1582514603957</updated>
-    </task>
-    <task id="LOCAL-00010" summary="renamed CI to CI-CD">
-      <created>1582514729022</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1582514729022</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="tests - 2020.02.23 at 19h 48m 34s.xml">
-      <configuration name="tests" configurationId="FlutterTestConfigType" />
-    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1044" extended-state="6" />
@@ -275,16 +280,17 @@
       <window_info id="Resources Explorer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Dart Analysis" order="0" visible="true" weight="0.32751092" />
-      <window_info anchor="bottom" id="Run" order="1" weight="0.32969433" />
+      <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32969433" />
+      <window_info active="true" anchor="bottom" id="Run" order="1" visible="true" weight="0.32969433" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="4" />
       <window_info anchor="bottom" id="Debug" order="5" />
-      <window_info anchor="bottom" id="Terminal" order="6" weight="0.32969433" />
+      <window_info anchor="bottom" id="Terminal" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32969433" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.32969433" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" />
+      <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.32969433" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
@@ -294,77 +300,70 @@
       <window_info anchor="right" id="Flutter Performance" order="6" />
     </layout>
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="New with this repository:&#10;* demo app with a gallery as tabs or as a single page (change through a switch)&#10;* automated testing&#10;* continuous integration (CI)&#10;* continuous deployment (CD)&#10;* license is MIT&#10;* split constructors between single and multiple selection&#10;* comments on the constructors&#10;* selection can be done in a menu, not just a dialog box&#10;* solution to allow flexibility to provide a String, a Widget or a Function that returns either one of String or Widget for several components of the Widget&#10;* documentation&#10;* keyboard doesn't overlap dialog" />
-    <MESSAGE value="removed gif images from readme for smaller package" />
-    <MESSAGE value="CI/CD pushes to pub.dev automatically on push/merge" />
-    <MESSAGE value="minor improvements to README" />
-    <MESSAGE value="renamed CI to CI-CD" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed CI to CI-CD" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/search_choices_for_push.dart" />
-    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
+    <entry file="file://$PROJECT_DIR$/main.dart.js.map" />
+    <entry file="file://$PROJECT_DIR$/main.dart.js" />
+    <entry file="file://$PROJECT_DIR$/flutter_service_worker.js" />
+    <entry file="file://$PROJECT_DIR$/manifest.json" />
+    <entry file="file://$PROJECT_DIR$/assets/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+        <state relative-caret-position="195">
+          <caret line="11993" selection-start-line="11993" selection-end-line="11993" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/searchable_dropdown.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/search_choices_test.dart">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example/android/app/build.gradle">
+    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/search_choices.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="311" column="57" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="57" />
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.github/workflows/main.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="674" column="117" selection-start-line="674" selection-start-column="117" selection-end-line="674" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        <state relative-caret-position="420">
+          <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
         </state>
       </provider>
     </entry>

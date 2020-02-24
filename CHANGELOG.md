@@ -1,3 +1,8 @@
+## 1.1.1
+
+Restored from search_choices to searchable_dropdown plugin:
+* pubspec.yaml: name, version, repository, homepage, issue_tracker, androidPackage
+
 ## 1.0.3
 
 * minor improvements to README
