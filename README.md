@@ -672,4 +672,4 @@ In your pull request, feel free to add your line in the contributors section bel
 
 ## CI/CD
 
-Continuous integration/deployment status: ![CI](https://github.com/lcuis/search_choices/workflows/CI/badge.svg)
+Continuous integration/deployment status: ![CI-CD](https://github.com/lcuis/search_choices/workflows/CI-CD/badge.svg)
