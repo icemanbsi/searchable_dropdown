@@ -1,4 +1,4 @@
-group 'li.jod.search_choices'
+group 'bsi.iceman.searchable_dropdown'
 version '1.0-SNAPSHOT'
 
 buildscript {

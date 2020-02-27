@@ -1,4 +1,4 @@
-# search_choices
+# searchable_dropdown
 
 Widget to let the user search through a keyword string typed on a customizable keyboard in a single or multiple choices list presented as a dropdown in a dialog box or a menu.
 
@@ -8,7 +8,7 @@ This widget has been successfully tested on iOS, Android and Chrome.
 
 ## Examples
 
-The following examples are extracted from the [example project available in the repository](https://github.com/lcuis/search_choices/tree/master/example).
+The following examples are extracted from the [example project available in the repository](https://github.com/icemanbsi/searchable_dropdown/tree/master/example).
 
 ### Gallery
 
@@ -16,26 +16,18 @@ See code below.
 
 | Example name | Demonstration |
 | --- | --- |
-| [Single dialog](#Single-dialog) | ![Single dialog](https://searchchoices.jod.li/Single%20dialog.gif) |
-| [Multi dialog](#Multi-dialog) | ![Multi dialog](https://searchchoices.jod.li/Multi%20dialog.gif) |
-| [Single done button<br>dialog](#Single-done-button-dialog) | ![Single done button dialog](https://searchchoices.jod.li/Single%20done%20button%20dialog.gif) |
-| [Multi custom display<br>dialog](#Multi-custom-display-dialog) | ![Multi custom display dialog](https://searchchoices.jod.li/Multi%20custom%20display%20dialog.gif) |
-| [Multi select 3 dialog](#Multi-select-3-dialog) | ![Multi select 3 dialog](https://searchchoices.jod.li/Multi%20select%203%20dialog.gif) |
-| [Single menu](#Single-menu) | ![Single menu](https://searchchoices.jod.li/Single%20menu.gif) |
-| [Multi menu](#Multi-menu) | ![Multi menu](https://searchchoices.jod.li/Multi%20menu.gif) |
-| [Multi menu select<br>all/none](#Multi-menu-select-allnone) | ![Multi menu select all or none](https://searchchoices.jod.li/Multi%20menu%20select%20all%20or%20none.gif) |
-| [Multi dialog select<br>all/none without clear](#Multi-dialog-select-allnone-without-clear) | ![Multi dialog select all or none without clear](https://searchchoices.jod.li/Multi%20dialog%20select%20all%20or%20none%20without%20clear.gif) |
-| [Single dialog custom<br>keyboard](#Single-dialog-custom-keyboard) | ![Single dialog custom keyboard](https://searchchoices.jod.li/Single%20dialog%20custom%20keyboard.gif) |
-| [Single dialog object](#Single-dialog-object) | ![Single dialog object](https://searchchoices.jod.li/Single%20dialog%20object.gif) |
-| [Single dialog overflow](#Single-dialog-overflow) | ![Single dialog overflow](https://searchchoices.jod.li/Single%20dialog%20overflow.gif) |
-
-### Demonstration
-
-A web demonstration is available here for Chrome:
-https://searchchoices.jod.li/
-
-An Android demonstration is available here:
-https://searchchoices.jod.li/app-release.apk
+| [Single dialog](#Single-dialog) | ![Single dialog](doc/images/Single%20dialog.gif) |
+| [Multi dialog](#Multi-dialog) | ![Multi dialog](doc/images/Multi%20dialog.gif) |
+| [Single done button<br>dialog](#Single-done-button-dialog) | ![Single done button dialog](doc/images/Single%20done%20button%20dialog.gif) |
+| [Multi custom display<br>dialog](#Multi-custom-display-dialog) | ![Multi custom display dialog](doc/images/Multi%20custom%20display%20dialog.gif) |
+| [Multi select 3 dialog](#Multi-select-3-dialog) | ![Multi select 3 dialog](doc/images/Multi%20select%203%20dialog.gif) |
+| [Single menu](#Single-menu) | ![Single menu](doc/images/Single%20menu.gif) |
+| [Multi menu](#Multi-menu) | ![Multi menu](doc/images/Multi%20menu.gif) |
+| [Multi menu select<br>all/none](#Multi-menu-select-allnone) | ![Multi menu select all or none](doc/images/Multi%20menu%20select%20all%20or%20none.gif) |
+| [Multi dialog select<br>all/none without clear](#Multi-dialog-select-allnone-without-clear) | ![Multi dialog select all or none without clear](doc/images/Multi%20dialog%20select%20all%20or%20none%20without%20clear.gif) |
+| [Single dialog custom<br>keyboard](#Single-dialog-custom-keyboard) | ![Single dialog custom keyboard](doc/images/Single%20dialog%20custom%20keyboard.gif) |
+| [Single dialog object](#Single-dialog-object) | ![Single dialog object](doc/images/Single%20dialog%20object.gif) |
+| [Single dialog overflow](#Single-dialog-overflow) | ![Single dialog overflow](doc/images/Single%20dialog%20overflow.gif) |
 
 ### Code
 
@@ -43,7 +35,7 @@ https://searchchoices.jod.li/app-release.apk
 
 Add to your `pubspec.yaml` in the `dependencies` section:
 ```
-  search_choices:
+  searchable_dropdown:
 ```
 
 Get packages with command:
@@ -53,7 +45,7 @@ flutter packages get
 
 Import:
 ```dart
-import 'package:search_choices/search_choices.dart';
+import 'package:searchable_dropdown/searchable_dropdown.dart';
 ```
 
 Call either the single choice or the multiple choice constructor.
@@ -63,7 +55,7 @@ Call either the single choice or the multiple choice constructor.
 Search choices Widget with a single choice that opens a dialog or a menu to let the user do the selection conveniently with a search.
 
 ```dart
-factory SearchChoices.single({
+factory SearchableDropdown.single({
   Key key,
   @required List<DropdownMenuItem<T>> items,
   @required Function onChanged,
@@ -130,7 +122,7 @@ factory SearchChoices.single({
 Search choices Widget with a multiple choice that opens a dialog or a menu to let the user do the selection conveniently with a search.
 
 ```dart
-SearchChoices<T>.multiple(
+SearchableDropdown<T>.multiple(
 {Key key,
 @required List<DropdownMenuItem<T>> items,
 @required Function onChanged,
@@ -194,12 +186,12 @@ BoxConstraints menuConstraints}
 
 Clone repository:
 ```
-git clone https://github.com/lcuis/search_choices.git
+git clone https://github.com/icemanbsi/searchable_dropdown.git
 ```
 
 Go to plugin folder:
 ```
-cd search_choices
+cd searchable_dropdown
 ```
 
 Optionally enable web:
@@ -255,7 +247,7 @@ flutter build ios
 
 #### Single dialog
 ```dart
-      SearchChoices.single(
+      SearchableDropdown.single(
         items: items,
         value: selectedValue,
         hint: "Select one",
@@ -270,7 +262,7 @@ flutter build ios
 ```
 #### Multi dialog
 ```dart
-      SearchChoices.multiple(
+      SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: Padding(
@@ -294,7 +286,7 @@ flutter build ios
 
 #### Single done button dialog
 ```dart
-      SearchChoices.single(
+      SearchableDropdown.single(
         items: items,
         value: selectedValue,
         hint: "Select one",
@@ -327,7 +319,7 @@ flutter build ios
 ```
 #### Multi custom display dialog
 ```dart
-      SearchChoices.multiple(
+      SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: Padding(
@@ -422,7 +414,7 @@ flutter build ios
 
 #### Multi select 3 dialog
 ```dart
-      SearchChoices.multiple(
+      SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: "Select 3 items",
@@ -457,7 +449,7 @@ flutter build ios
 
 #### Single menu
 ```dart
-      SearchChoices.single(
+      SearchableDropdown.single(
         items: items,
         value: selectedValue,
         hint: "Select one",
@@ -475,7 +467,7 @@ flutter build ios
 
 #### Multi menu
 ```dart
-      SearchChoices.multiple(
+      SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: "Select any",
@@ -495,7 +487,7 @@ flutter build ios
 
 #### Multi menu select all/none
 ```dart
-      SearchChoices.multiple(
+      SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: "Select any",
@@ -536,7 +528,7 @@ flutter build ios
 
 #### Multi dialog select all/none without clear
 ```dart
-      SearchChoices.multiple(
+      SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: "Select any",
@@ -577,7 +569,7 @@ flutter build ios
 
 #### Single dialog custom keyboard
 ```dart
-      SearchChoices.single(
+      SearchableDropdown.single(
         items: Iterable<int>.generate(20).toList().map((i) {
           return (DropdownMenuItem(
             child: Text(i.toString()),
@@ -600,7 +592,7 @@ flutter build ios
 
 #### Single dialog object
 ```dart
-      SearchChoices.single(
+      SearchableDropdown.single(
         items: ExampleNumber.list.map((exNum) {
           return (DropdownMenuItem(
               child: Text(exNum.numberString), value: exNum));
@@ -619,7 +611,7 @@ flutter build ios
 ```
 #### Single dialog overflow
 ```dart
-      SearchChoices.single(
+      SearchableDropdown.single(
         items: [
           DropdownMenuItem(
             child: Text(
@@ -647,14 +639,11 @@ wouldn't want to go right now",
 ## Feature requests/comments/questions/bugs
 
 Feel free to log your feature requests/comments/questions/bugs here:
-https://github.com/lcuis/search_choices/issues
+https://github.com/icemanbsi/searchable_dropdown/issues
 
 ## Contributions
 
-This solution is based on improvements done on a pull request that was probably already changing too many things to the [great original repository](https://github.com/icemanbsi/searchable_dropdown):
-https://github.com/icemanbsi/searchable_dropdown/pull/11
-
-I would be happy to merge pull request proposals provided that:
+We would be happy to merge pull request proposals provided that:
 * they don't break the compilation
 * they pass the automated testing
 * they provide the relevant adaptations to documentation and automated testing
@@ -667,9 +656,9 @@ Contributions and forks are very welcome!
 In your pull request, feel free to add your line in the contributors section below:
 
 ### Contributors
-* (great initial project) https://github.com/icemanbsi/searchable_dropdown/pull/11
+* https://github.com/icemanbsi
 * https://github.com/lcuis
 
 ## CI/CD
 
-Continuous integration/deployment status: ![CI-CD](https://github.com/lcuis/search_choices/workflows/CI-CD/badge.svg)
+Continuous integration/deployment status: ![CI-CD](https://github.com/icemanbsi/searchable_dropdown/workflows/CI-CD/badge.svg)

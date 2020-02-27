@@ -21,38 +21,39 @@ jobs:
           channel: 'dev'
       - run: flutter pub get
       - run: flutter format .
-# pub.dev removes points because of an error on textTheme.subhead -> textTheme.subtitle1 (warning that would occur is the following line remained)
+# pub.dev removes points because of an error on textTheme.subhead -> textTheme.subtitle1 (warning that would occur if the following line remained)
 #      - run: flutter analyze
-      - run: flutter config --enable-web
+#      - run: flutter config --enable-web
       - run: flutter test
 
-      - name: Publish
-        uses: sakebook/actions-flutter-pub-publisher@v1.2.1
-        with:
-          credential: ${{ secrets.CREDENTIAL_JSON }}
-          flutter_package: false
-          skip_test: true
+# use the following 6 lines with the defined secret CREDENTIAL_JSON to publish automatically to pub.dev
+#      - name: Publish to pub.dev
+#        uses: sakebook/actions-flutter-pub-publisher@v1.2.1
+#        with:
+#          credential: ${{ secrets.CREDENTIAL_JSON }}
+#          flutter_package: false
+#          skip_test: true
 
-      - run: pushd example&&flutter build web
-      - name: Deploy web
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          local: example/build/web
-          remote: fromgithub/
-          host: ${{ secrets.jodhost }}
-          username: ${{ secrets.jodsshuser }}
-          password: ${{ secrets.jodsshpassword }}
-          recursive: true
-      - run: pushd example&&flutter build apk --release
-      - name: Deploy apk
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          local: example/build/app/outputs/apk/release
-          remote: fromgithub/
-          host: ${{ secrets.jodhost }}
-          username: ${{ secrets.jodsshuser }}
-          password: ${{ secrets.jodsshpassword }}
-          recursive: true
+#      - run: pushd example&&flutter build web
+#      - name: Deploy web
+#        uses: garygrossgarten/github-action-scp@release
+#        with:
+#          local: example/build/web
+#          remote: fromgithub/
+#          host: ${{ secrets.jodhost }}
+#          username: ${{ secrets.jodsshuser }}
+#          password: ${{ secrets.jodsshpassword }}
+#          recursive: true
+#      - run: pushd example&&flutter build apk --release
+#      - name: Deploy apk
+#        uses: garygrossgarten/github-action-scp@release
+#        with:
+#          local: example/build/app/outputs/apk/release
+#          remote: fromgithub/
+#          host: ${{ secrets.jodhost }}
+#          username: ${{ secrets.jodsshuser }}
+#          password: ${{ secrets.jodsshpassword }}
+#          recursive: true
 
 
 # ios build fails apparently because of missing signature despite the --no-codesign parameter

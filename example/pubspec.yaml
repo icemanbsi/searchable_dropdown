@@ -1,7 +1,6 @@
-name: search_choices_example
-description: Demonstrates how to use the search_choices plugin.
+name: searchable_dropdown_example
+description: Demonstrates how to use the searchable_dropdown plugin.
 version: 0.0.1
-author: flutter@jod.li
 publish_to: 'none'
 
 environment:
@@ -19,7 +18,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  search_choices:
+  searchable_dropdown:
     path: ../
 
 # For information on the generic Dart part of this file, see the

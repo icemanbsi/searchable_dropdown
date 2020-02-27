@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:search_choices/search_choices.dart';
+import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class ExampleNumber {
   int number;
@@ -105,9 +105,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, SearchChoices> widgets;
+    Map<String, SearchableDropdown> widgets;
     widgets = {
-      "Single dialog": SearchChoices.single(
+      "Single dialog": SearchableDropdown.single(
         items: items,
         value: selectedValue,
         hint: "Select one",
@@ -119,7 +119,7 @@ class _MyAppState extends State<MyApp> {
         },
         isExpanded: true,
       ),
-      "Multi dialog": SearchChoices.multiple(
+      "Multi dialog": SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: Padding(
@@ -139,7 +139,7 @@ class _MyAppState extends State<MyApp> {
         },
         isExpanded: true,
       ),
-      "Single done button dialog": SearchChoices.single(
+      "Single done button dialog": SearchableDropdown.single(
         items: items,
         value: selectedValue,
         hint: "Select one",
@@ -169,7 +169,7 @@ class _MyAppState extends State<MyApp> {
         },
         isExpanded: true,
       ),
-      "Multi custom display dialog": SearchChoices.multiple(
+      "Multi custom display dialog": SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: Padding(
@@ -260,7 +260,7 @@ class _MyAppState extends State<MyApp> {
         iconEnabledColor: Colors.indigo,
         isExpanded: true,
       ),
-      "Multi select 3 dialog": SearchChoices.multiple(
+      "Multi select 3 dialog": SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: "Select 3 items",
@@ -291,7 +291,7 @@ class _MyAppState extends State<MyApp> {
         },
         isExpanded: true,
       ),
-      "Single menu": SearchChoices.single(
+      "Single menu": SearchableDropdown.single(
         items: items,
         value: selectedValue,
         hint: "Select one",
@@ -305,7 +305,7 @@ class _MyAppState extends State<MyApp> {
         isExpanded: true,
         menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
       ),
-      "Multi menu": SearchChoices.multiple(
+      "Multi menu": SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: "Select any",
@@ -321,7 +321,7 @@ class _MyAppState extends State<MyApp> {
         isExpanded: true,
         menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
       ),
-      "Multi menu select all/none": SearchChoices.multiple(
+      "Multi menu select all/none": SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: "Select any",
@@ -358,7 +358,7 @@ class _MyAppState extends State<MyApp> {
         isExpanded: true,
         menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
       ),
-      "Multi dialog select all/none without clear": SearchChoices.multiple(
+      "Multi dialog select all/none without clear": SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: "Select any",
@@ -395,7 +395,7 @@ class _MyAppState extends State<MyApp> {
         },
         isExpanded: true,
       ),
-      "Single dialog custom keyboard": SearchChoices.single(
+      "Single dialog custom keyboard": SearchableDropdown.single(
         items: Iterable<int>.generate(20).toList().map((i) {
           return (DropdownMenuItem(
             child: Text(i.toString()),
@@ -414,7 +414,7 @@ class _MyAppState extends State<MyApp> {
         keyboardType: TextInputType.number,
         isExpanded: true,
       ),
-      "Single dialog object": SearchChoices.single(
+      "Single dialog object": SearchableDropdown.single(
         items: ExampleNumber.list.map((exNum) {
           return (DropdownMenuItem(
               child: Text(exNum.numberString), value: exNum));
@@ -430,7 +430,7 @@ class _MyAppState extends State<MyApp> {
         dialogBox: true,
         isExpanded: true,
       ),
-      "Single dialog overflow": SearchChoices.single(
+      "Single dialog overflow": SearchableDropdown.single(
         items: [
           DropdownMenuItem(
             child: Text(
@@ -448,6 +448,25 @@ class _MyAppState extends State<MyApp> {
           });
         },
         dialogBox: true,
+        isExpanded: true,
+      ),
+      "Historical example": SearchableDropdown(
+        items: items,
+        value: selectedValue,
+        hint: Text(
+            'Select One'
+        ),
+        searchHint: new Text(
+          'Select One',
+          style: new TextStyle(
+              fontSize: 20
+          ),
+        ),
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
         isExpanded: true,
       ),
     };
