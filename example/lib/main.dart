@@ -450,17 +450,48 @@ class _MyAppState extends State<MyApp> {
         dialogBox: true,
         isExpanded: true,
       ),
+      "Single dialog readOnly": SearchableDropdown.single(
+        items: [
+          DropdownMenuItem(
+            child: Text("one item"),
+            value: "one item",
+          )
+        ],
+        value: "one item",
+        hint: "Select one",
+        searchHint: "Select one",
+        disabledHint: "Disabled",
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
+        dialogBox: true,
+        isExpanded: true,
+        readOnly: true,
+      ),
+      "Single dialog disabled": SearchableDropdown.single(
+        items: [
+          DropdownMenuItem(
+            child: Text("one item"),
+            value: "one item",
+          )
+        ],
+        value: "one item",
+        hint: "Select one",
+        searchHint: "Select one",
+        disabledHint: "Disabled",
+        onChanged: null,
+        dialogBox: true,
+        isExpanded: true,
+      ),
       "Historical example": SearchableDropdown(
         items: items,
         value: selectedValue,
-        hint: Text(
-            'Select One'
-        ),
+        hint: Text('Select One'),
         searchHint: new Text(
           'Select One',
-          style: new TextStyle(
-              fontSize: 20
-          ),
+          style: new TextStyle(fontSize: 20),
         ),
         onChanged: (value) {
           setState(() {

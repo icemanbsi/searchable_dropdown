@@ -28,6 +28,8 @@ See code below.
 | [Single dialog custom<br>keyboard](#Single-dialog-custom-keyboard) | ![Single dialog custom keyboard](doc/images/Single%20dialog%20custom%20keyboard.gif) |
 | [Single dialog object](#Single-dialog-object) | ![Single dialog object](doc/images/Single%20dialog%20object.gif) |
 | [Single dialog overflow](#Single-dialog-overflow) | ![Single dialog overflow](doc/images/Single%20dialog%20overflow.gif) |
+| [Single dialog readOnly](#Single-dialog-readOnly) | ![Single dialog readOnly](doc/images/Single%20dialog%20readOnly.png) |
+| [Single dialog disabled](#Single-dialog-disabled) | ![Single dialog disabled](doc/images/Single%20dialog%20disabled.png) |
 
 ### Code
 
@@ -56,36 +58,39 @@ Search choices Widget with a single choice that opens a dialog or a menu to let 
 
 ```dart
 factory SearchableDropdown.single({
-  Key key,
-  @required List<DropdownMenuItem<T>> items,
-  @required Function onChanged,
-  T value,
-  TextStyle style,
-  dynamic searchHint,
-  dynamic hint,
-  dynamic disabledHint,
-  dynamic icon = const Icon(Icons.arrow_drop_down),
-  dynamic underline,
-  dynamic doneButton,
-  dynamic label,
-  dynamic closeButton = "Close",
-  bool displayClearIcon = true,
-  Icon clearIcon = const Icon(Icons.clear),
-  Color iconEnabledColor,
-  Color iconDisabledColor,
-  double iconSize = 24.0,
-  bool isExpanded = false,
-  bool isCaseSensitiveSearch = false,
-  Function searchFn,
-  Function onClear,
-  Function selectedValueWidgetFn,
-  TextInputType keyboardType = TextInputType.text,
-  Function validator,
-  bool assertUniqueValue = true,
-  Function displayItem,
-  bool dialogBox = true,
-  BoxConstraints menuConstraints,
-})
+    Key key,
+    @required List<DropdownMenuItem<T>> items,
+    @required Function onChanged,
+    T value,
+    TextStyle style,
+    dynamic searchHint,
+    dynamic hint,
+    dynamic disabledHint,
+    dynamic icon = const Icon(Icons.arrow_drop_down),
+    dynamic underline,
+    dynamic doneButton,
+    dynamic label,
+    dynamic closeButton = "Close",
+    bool displayClearIcon = true,
+    Icon clearIcon = const Icon(Icons.clear),
+    Color iconEnabledColor,
+    Color iconDisabledColor,
+    double iconSize = 24.0,
+    bool isExpanded = false,
+    bool isCaseSensitiveSearch = false,
+    Function searchFn,
+    Function onClear,
+    Function selectedValueWidgetFn,
+    TextInputType keyboardType = TextInputType.text,
+    Function validator,
+    bool assertUniqueValue = true,
+    Function displayItem,
+    bool dialogBox = true,
+    BoxConstraints menuConstraints,
+    bool readOnly: false,
+    Color menuBackgroundColor,
+}
+)
 ```
 
 * items with child: Widget displayed ; value: any object with .toString() used to match search keyword.
@@ -116,6 +121,9 @@ factory SearchableDropdown.single({
 * displayItem Function with parameters: item, selected returning Widget to be displayed in the search list.
 * dialogBox whether the search should be displayed as a dialog box or as a menu below the selected value if any.
 * menuConstraints BoxConstraints used to define the zone where to display the search menu. Example: BoxConstraints.tight(Size.fromHeight(250)) . Not to be used for dialogBox = true.
+* readOnly bool whether to let the user choose the value to select or just present the selected value if any.
+* menuBackgroundColor Color background color of the menu whether in dialog box or menu mode.
+
 
 #### Multiple choice constructor
 
@@ -123,34 +131,38 @@ Search choices Widget with a multiple choice that opens a dialog or a menu to le
 
 ```dart
 SearchableDropdown<T>.multiple(
-{Key key,
-@required List<DropdownMenuItem<T>> items,
-@required Function onChanged,
-List<int> selectedItems: const [],
-TextStyle style,
-dynamic searchHint,
-dynamic hint,
-dynamic disabledHint,
-dynamic icon: const Icon(Icons.arrow_drop_down),
-dynamic underline,
-dynamic doneButton: "Done",
-dynamic label,
-dynamic closeButton: "Close",
-bool displayClearIcon: true,
-Icon clearIcon: const Icon(Icons.clear),
-Color iconEnabledColor,
-Color iconDisabledColor,
-double iconSize: 24.0,
-bool isExpanded: false,
-bool isCaseSensitiveSearch: false,
-Function searchFn,
-Function onClear,
-Function selectedValueWidgetFn,
-TextInputType keyboardType: TextInputType.text,
-Function validator,
-Function displayItem,
-bool dialogBox: true,
-BoxConstraints menuConstraints}
+{
+    Key key,
+    @required List<DropdownMenuItem<T>> items,
+    @required Function onChanged,
+    List<int> selectedItems: const [],
+    TextStyle style,
+    dynamic searchHint,
+    dynamic hint,
+    dynamic disabledHint,
+    dynamic icon: const Icon(Icons.arrow_drop_down),
+    dynamic underline,
+    dynamic doneButton: "Done",
+    dynamic label,
+    dynamic closeButton: "Close",
+    bool displayClearIcon: true,
+    Icon clearIcon: const Icon(Icons.clear),
+    Color iconEnabledColor,
+    Color iconDisabledColor,
+    double iconSize: 24.0,
+    bool isExpanded: false,
+    bool isCaseSensitiveSearch: false,
+    Function searchFn,
+    Function onClear,
+    Function selectedValueWidgetFn,
+    TextInputType keyboardType: TextInputType.text,
+    Function validator,
+    Function displayItem,
+    bool dialogBox: true,
+    BoxConstraints menuConstraints,
+    bool readOnly: false,
+    Color menuBackgroundColor,
+}
 )
 ```
 
@@ -181,6 +193,8 @@ BoxConstraints menuConstraints}
 * displayItem Function with parameters: item, selected returning Widget to be displayed in the search list.
 * dialogBox whether the search should be displayed as a dialog box or as a menu below the selected values if any.
 * menuConstraints BoxConstraints used to define the zone where to display the search menu. Example: BoxConstraints.tight(Size.fromHeight(250)) . Not to be used for dialogBox = true.
+* readOnly bool whether to let the user choose the value to select or just present the selected value if any.
+* menuBackgroundColor Color background color of the menu whether in dialog box or menu mode.
 
 #### Example app usage
 
@@ -634,7 +648,51 @@ wouldn't want to go right now",
         isExpanded: true,
       ),
 ```
-
+#### Single dialog readOnly
+```dart
+      SearchableDropdown.single(
+        items: [
+          DropdownMenuItem(
+            child: Text(
+                "one item"),
+            value:
+            "one item",
+          )
+        ],
+        value: "one item",
+        hint: "Select one",
+        searchHint: "Select one",
+        disabledHint: "Disabled",
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
+        dialogBox: true,
+        isExpanded: true,
+        readOnly: true,
+      ),
+```
+#### Single dialog disabled
+```dart
+      SearchableDropdown.single(
+        items: [
+          DropdownMenuItem(
+            child: Text(
+                "one item"),
+            value:
+            "one item",
+          )
+        ],
+        value: "one item",
+        hint: "Select one",
+        searchHint: "Select one",
+        disabledHint: "Disabled",
+        onChanged: null,
+        dialogBox: true,
+        isExpanded: true,
+      ),
+```
 
 ## Feature requests/comments/questions/bugs
 

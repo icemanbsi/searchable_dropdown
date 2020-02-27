@@ -76,6 +76,8 @@ class SearchableDropdown<T> extends StatefulWidget {
   final Function displayItem;
   final bool dialogBox;
   final BoxConstraints menuConstraints;
+  final bool readOnly;
+  final Color menuBackgroundColor;
 
   /// Search choices Widget with a single choice that opens a dialog or a menu to let the user do the selection conveniently with a search.
   ///
@@ -107,6 +109,8 @@ class SearchableDropdown<T> extends StatefulWidget {
   /// @param displayItem [Function] with parameters: __item__, __selected__ returning [Widget] to be displayed in the search list.
   /// @param dialogBox whether the search should be displayed as a dialog box or as a menu below the selected value if any.
   /// @param menuConstraints [BoxConstraints] used to define the zone where to display the search menu. Example: BoxConstraints.tight(Size.fromHeight(250)) . Not to be used for dialogBox = true.
+  /// @param readOnly [bool] whether to let the user choose the value to select or just present the selected value if any.
+  /// @param menuBackgroundColor [Color] background color of the menu whether in dialog box or menu mode.
   factory SearchableDropdown.single({
     Key key,
     @required List<DropdownMenuItem<T>> items,
@@ -137,6 +141,8 @@ class SearchableDropdown<T> extends StatefulWidget {
     Function displayItem,
     bool dialogBox = true,
     BoxConstraints menuConstraints,
+    bool readOnly = false,
+    Color menuBackgroundColor,
   }) {
     return (SearchableDropdown._(
       key: key,
@@ -168,6 +174,8 @@ class SearchableDropdown<T> extends StatefulWidget {
       displayItem: displayItem,
       dialogBox: dialogBox,
       menuConstraints: menuConstraints,
+      readOnly: readOnly,
+      menuBackgroundColor: menuBackgroundColor,
     ));
   }
 
@@ -200,6 +208,8 @@ class SearchableDropdown<T> extends StatefulWidget {
   /// @param displayItem [Function] with parameters: __item__, __selected__ returning [Widget] to be displayed in the search list.
   /// @param dialogBox whether the search should be displayed as a dialog box or as a menu below the selected values if any.
   /// @param menuConstraints [BoxConstraints] used to define the zone where to display the search menu. Example: BoxConstraints.tight(Size.fromHeight(250)) . Not to be used for dialogBox = true.
+  /// @param readOnly [bool] whether to let the user choose the value to select or just present the selected value if any.
+  /// @param menuBackgroundColor [Color] background color of the menu whether in dialog box or menu mode.
   factory SearchableDropdown.multiple({
     Key key,
     @required List<DropdownMenuItem<T>> items,
@@ -229,37 +239,42 @@ class SearchableDropdown<T> extends StatefulWidget {
     Function displayItem,
     bool dialogBox = true,
     BoxConstraints menuConstraints,
+    bool readOnly = false,
+    Color menuBackgroundColor,
   }) {
     return (SearchableDropdown._(
-        key: key,
-        items: items,
-        style: style,
-        searchHint: searchHint,
-        hint: hint,
-        disabledHint: disabledHint,
-        icon: icon,
-        underline: underline,
-        iconEnabledColor: iconEnabledColor,
-        iconDisabledColor: iconDisabledColor,
-        iconSize: iconSize,
-        isExpanded: isExpanded,
-        isCaseSensitiveSearch: isCaseSensitiveSearch,
-        closeButton: closeButton,
-        displayClearIcon: displayClearIcon,
-        clearIcon: clearIcon,
-        onClear: onClear,
-        selectedValueWidgetFn: selectedValueWidgetFn,
-        keyboardType: keyboardType,
-        validator: validator,
-        label: label,
-        searchFn: searchFn,
-        multipleSelection: true,
-        selectedItems: selectedItems,
-        doneButton: doneButton,
-        onChanged: onChanged,
-        displayItem: displayItem,
-        dialogBox: dialogBox,
-        menuConstraints: menuConstraints));
+      key: key,
+      items: items,
+      style: style,
+      searchHint: searchHint,
+      hint: hint,
+      disabledHint: disabledHint,
+      icon: icon,
+      underline: underline,
+      iconEnabledColor: iconEnabledColor,
+      iconDisabledColor: iconDisabledColor,
+      iconSize: iconSize,
+      isExpanded: isExpanded,
+      isCaseSensitiveSearch: isCaseSensitiveSearch,
+      closeButton: closeButton,
+      displayClearIcon: displayClearIcon,
+      clearIcon: clearIcon,
+      onClear: onClear,
+      selectedValueWidgetFn: selectedValueWidgetFn,
+      keyboardType: keyboardType,
+      validator: validator,
+      label: label,
+      searchFn: searchFn,
+      multipleSelection: true,
+      selectedItems: selectedItems,
+      doneButton: doneButton,
+      onChanged: onChanged,
+      displayItem: displayItem,
+      dialogBox: dialogBox,
+      menuConstraints: menuConstraints,
+      readOnly: readOnly,
+      menuBackgroundColor: menuBackgroundColor,
+    ));
   }
 
   SearchableDropdown._({
@@ -293,6 +308,8 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.displayItem,
     this.dialogBox,
     this.menuConstraints,
+    this.readOnly = false,
+    this.menuBackgroundColor,
   })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -329,8 +346,10 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.selectedItems = const [],
     this.doneButton,
     this.displayItem,
-    this.dialogBox=true,
+    this.dialogBox = true,
     this.menuConstraints,
+    this.readOnly = false,
+    this.menuBackgroundColor,
   })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -347,7 +366,13 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
   List<bool> displayMenu = [false];
 
   TextStyle get _textStyle =>
-      widget.style ?? Theme.of(context).textTheme.subhead;
+      widget.style ??
+      (_enabled && !(widget.readOnly ?? false)
+          ? Theme.of(context).textTheme.subhead
+          : Theme.of(context)
+              .textTheme
+              .subhead
+              .copyWith(color: _disabledIconColor));
   bool get _enabled =>
       widget.items != null &&
       widget.items.isNotEmpty &&
@@ -381,7 +406,9 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
 
   Color get _iconColor {
     // These colors are not defined in the Material Design spec.
-    return (_enabled ? _enabledIconColor : _disabledIconColor);
+    return (_enabled && !(widget.readOnly ?? false)
+        ? _enabledIconColor
+        : _disabledIconColor);
   }
 
   bool get valid {
@@ -444,6 +471,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       dialogBox: widget.dialogBox,
       displayMenu: displayMenu,
       menuConstraints: widget.menuConstraints,
+      menuBackgroundColor: widget.menuBackgroundColor,
       callOnPop: () {
         if (!widget.dialogBox &&
             widget.onChanged != null &&
@@ -497,22 +525,24 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     Widget clickable = InkWell(
         key: Key(
             "clickableResultPlaceHolder"), //this key is used for running automated tests
-        onTap: () async {
-          if (widget.dialogBox) {
-            await showDialog(
-                context: context,
-                barrierDismissible: true,
-                builder: (context) {
-                  return (menuWidget);
-                });
-            if (widget.onChanged != null && selectedItems != null) {
-              widget.onChanged(selectedResult);
-            }
-          } else {
-            displayMenu.first = true;
-          }
-          setState(() {});
-        },
+        onTap: (widget.readOnly ?? false) || !_enabled
+            ? null
+            : () async {
+                if (widget.dialogBox) {
+                  await showDialog(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (context) {
+                        return (menuWidget);
+                      });
+                  if (widget.onChanged != null && selectedItems != null) {
+                    widget.onChanged(selectedResult);
+                  }
+                } else {
+                  displayMenu.first = true;
+                }
+                setState(() {});
+              },
         child: Row(
           children: <Widget>[
             widget.isExpanded
@@ -541,7 +571,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
             !widget.displayClearIcon
                 ? SizedBox()
                 : InkWell(
-                    onTap: hasSelection
+                    onTap: hasSelection && _enabled && !widget.readOnly
                         ? () {
                             clearSelection();
                           }
@@ -554,9 +584,10 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                         children: <Widget>[
                           IconTheme(
                             data: IconThemeData(
-                              color: hasSelection
-                                  ? _enabledIconColor
-                                  : _disabledIconColor,
+                              color:
+                                  hasSelection && _enabled && !widget.readOnly
+                                      ? _enabledIconColor
+                                      : _disabledIconColor,
                               size: widget.iconSize,
                             ),
                             child: widget.clearIcon ?? Icon(Icons.clear),
@@ -652,6 +683,7 @@ class DropdownDialog<T> extends StatefulWidget {
   final List<bool> displayMenu;
   final BoxConstraints menuConstraints;
   final Function callOnPop;
+  final Color menuBackgroundColor;
 
   DropdownDialog({
     Key key,
@@ -670,6 +702,7 @@ class DropdownDialog<T> extends StatefulWidget {
     this.displayMenu,
     this.menuConstraints,
     this.callOnPop,
+    this.menuBackgroundColor,
   })  : assert(items != null),
         super(key: key);
 
@@ -738,6 +771,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       padding: MediaQuery.of(context).viewInsets,
       duration: const Duration(milliseconds: 300),
       child: new Card(
+        color: widget.menuBackgroundColor,
         margin: EdgeInsets.symmetric(
             vertical: widget.dialogBox ? 10 : 5,
             horizontal: widget.dialogBox ? 10 : 4),
