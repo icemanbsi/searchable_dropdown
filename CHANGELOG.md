@@ -1,3 +1,10 @@
+## 1.1.2
+
+* added demonstration for disabled and readOnly
+* test formatted
+* added readOnly and menuBackgroundColor parameters
+* clear icon disabled when Widget is disabled
+
 ## 1.1.1
 
 Restored from search_choices to searchable_dropdown plugin:
