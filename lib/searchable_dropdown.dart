@@ -447,12 +447,14 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       }
     }
     if (selectedItems == null) selectedItems = [];
+    selectedItems.removeWhere((item) => item >= widget.items.length);
     super.initState();
   }
 
   @override
   void didUpdateWidget(SearchableDropdown oldWidget) {
     super.didUpdateWidget(oldWidget);
+    selectedItems?.removeWhere((item) => item >= widget.items.length);
   }
 
   Widget get menuWidget {
