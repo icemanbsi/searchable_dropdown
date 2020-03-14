@@ -519,8 +519,8 @@ flutter build ios
               RaisedButton(
                   onPressed: () {
                     setState(() {
-                      selectedItemsClose.clear();
-                      selectedItemsClose.addAll(
+                      selectedItems.clear();
+                      selectedItems.addAll(
                           Iterable<int>.generate(items.length).toList());
                     });
                   },
@@ -528,7 +528,7 @@ flutter build ios
               RaisedButton(
                   onPressed: () {
                     setState(() {
-                      selectedItemsClose.clear();
+                      selectedItems.clear();
                     });
                   },
                   child: Text("Select none")),
@@ -561,8 +561,8 @@ flutter build ios
               RaisedButton(
                   onPressed: () {
                     setState(() {
-                      selectedItemsClose.clear();
-                      selectedItemsClose.addAll(
+                      selectedItems.clear();
+                      selectedItems.addAll(
                           Iterable<int>.generate(items.length).toList());
                     });
                   },
@@ -570,7 +570,7 @@ flutter build ios
               RaisedButton(
                   onPressed: () {
                     setState(() {
-                      selectedItemsClose.clear();
+                      selectedItems.clear();
                     });
                   },
                   child: Text("Select none")),
