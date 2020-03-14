@@ -4,40 +4,11 @@
 
 ## 1.1.2
 
+A great work from [lcuis](https://github.com/lcuis) to add these features in this widget
 * added demonstration for disabled and readOnly
 * test formatted
 * added readOnly and menuBackgroundColor parameters
 * clear icon disabled when Widget is disabled
-
-## 1.1.1
-
-Restored from search_choices to searchable_dropdown plugin:
-* pubspec.yaml: name, version, repository, homepage, issue_tracker, androidPackage
-
-## 1.0.3
-
-* minor improvements to README
-
-## 1.0.2
-
-* minor improvements to README
-
-## 1.0.1
-
-* CI/CD improved automated deployment
-
-## 0.0.1
-
-Improvements on a pull request that was probably changing too many things to be accepted of the great icemanbsi's searchable_dropdown:
-https://github.com/icemanbsi/searchable_dropdown/pull/11
-Part of the pull request I proposed:
-* keyboardType
-* validator
-* label
-* searchFn
-* multipleSelection
-
-New with this repository:
 * demo app with a gallery as tabs or as a single page (change through a switch)
 * automated testing
 * continuous integration (CI)
