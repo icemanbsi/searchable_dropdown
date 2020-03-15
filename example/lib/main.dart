@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
   String selectedValue;
   String preselectedValue = "dolor sit";
   ExampleNumber selectedNumber;
-  List<int> selectedItems;
+  List<int> selectedItems = [];
   final List<DropdownMenuItem> items = [];
 
   static const String appTitle = "Search Choices demo";
