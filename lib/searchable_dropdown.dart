@@ -59,11 +59,13 @@ class SearchableDropdown<T> extends StatefulWidget {
   final dynamic doneButton;
   final dynamic label;
   final dynamic closeButton;
+  final EdgeInsetsGeometry contentPadding;
   final bool displayClearIcon;
   final Icon clearIcon;
   final Color iconEnabledColor;
   final Color iconDisabledColor;
   final double iconSize;
+  final bool hasSearch;
   final bool isExpanded;
   final bool isCaseSensitiveSearch;
   final Function searchFn;
@@ -125,11 +127,13 @@ class SearchableDropdown<T> extends StatefulWidget {
     dynamic doneButton,
     dynamic label,
     dynamic closeButton = "Close",
+    EdgeInsetsGeometry contentPadding,
     bool displayClearIcon = true,
     Icon clearIcon = const Icon(Icons.clear),
     Color iconEnabledColor,
     Color iconDisabledColor,
     double iconSize = 24.0,
+    bool hasSearch = true,
     bool isExpanded = false,
     bool isCaseSensitiveSearch = false,
     Function searchFn,
@@ -152,12 +156,14 @@ class SearchableDropdown<T> extends StatefulWidget {
       style: style,
       searchHint: searchHint,
       hint: hint,
+      contentPadding: contentPadding,
       disabledHint: disabledHint,
       icon: icon,
       underline: underline,
       iconEnabledColor: iconEnabledColor,
       iconDisabledColor: iconDisabledColor,
       iconSize: iconSize,
+      hasSearch : hasSearch,
       isExpanded: isExpanded,
       isCaseSensitiveSearch: isCaseSensitiveSearch,
       closeButton: closeButton,
@@ -218,6 +224,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     TextStyle style,
     dynamic searchHint,
     dynamic hint,
+    EdgeInsetsGeometry contentPadding,
     dynamic disabledHint,
     dynamic icon = const Icon(Icons.arrow_drop_down),
     dynamic underline,
@@ -229,6 +236,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     Color iconEnabledColor,
     Color iconDisabledColor,
     double iconSize = 24.0,
+    bool hasSearch = true,
     bool isExpanded = false,
     bool isCaseSensitiveSearch = false,
     Function searchFn,
@@ -248,12 +256,14 @@ class SearchableDropdown<T> extends StatefulWidget {
       style: style,
       searchHint: searchHint,
       hint: hint,
+      contentPadding: contentPadding,
       disabledHint: disabledHint,
       icon: icon,
       underline: underline,
       iconEnabledColor: iconEnabledColor,
       iconDisabledColor: iconDisabledColor,
       iconSize: iconSize,
+      hasSearch: hasSearch,
       isExpanded: isExpanded,
       isCaseSensitiveSearch: isCaseSensitiveSearch,
       closeButton: closeButton,
@@ -285,12 +295,14 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.style,
     this.searchHint,
     this.hint,
+    this.contentPadding,
     this.disabledHint,
     this.icon,
     this.underline,
     this.iconEnabledColor,
     this.iconDisabledColor,
     this.iconSize = 24.0,
+    this.hasSearch = true,
     this.isExpanded = false,
     this.isCaseSensitiveSearch = false,
     this.closeButton,
@@ -312,6 +324,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.menuBackgroundColor,
   })  : assert(items != null),
         assert(iconSize != null),
+        assert(hasSearch != null),
         assert(isExpanded != null),
         assert(!multipleSelection || doneButton != null),
         assert(menuConstraints == null || !dialogBox),
@@ -325,12 +338,14 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.style,
     this.searchHint,
     this.hint,
+    this.contentPadding,
     this.disabledHint,
     this.icon = const Icon(Icons.arrow_drop_down),
     this.underline,
     this.iconEnabledColor,
     this.iconDisabledColor,
     this.iconSize = 24.0,
+    this.hasSearch = true,
     this.isExpanded = false,
     this.isCaseSensitiveSearch = false,
     this.closeButton = "Close",
@@ -352,6 +367,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.menuBackgroundColor,
   })  : assert(items != null),
         assert(iconSize != null),
+        assert(hasSearch != null),
         assert(isExpanded != null),
         assert(!multipleSelection || doneButton != null),
         assert(menuConstraints == null || !dialogBox),
@@ -463,6 +479,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       closeButton: widget.closeButton,
       keyboardType: widget.keyboardType,
       searchFn: widget.searchFn,
+      hasSearch: widget.hasSearch,
       multipleSelection: widget.multipleSelection,
       selectedItems: selectedItems,
       doneButton: widget.doneButton,
@@ -618,7 +635,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
         Stack(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: widget.contentPadding ?? EdgeInsets.all(10.0),
               child: result,
             ),
             widget.underline is NotGiven
@@ -674,6 +691,7 @@ class DropdownDialog<T> extends StatefulWidget {
   final dynamic closeButton;
   final TextInputType keyboardType;
   final Function searchFn;
+  final bool hasSearch;
   final bool multipleSelection;
   final List<int> selectedItems;
   final Function displayItem;
@@ -692,6 +710,7 @@ class DropdownDialog<T> extends StatefulWidget {
     this.isCaseSensitiveSearch = false,
     this.closeButton,
     this.keyboardType,
+    this.hasSearch,
     this.searchFn,
     this.multipleSelection,
     this.selectedItems,
@@ -784,7 +803,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               titleBar(),
-              searchBar(),
+              if (widget.hasSearch) searchBar(),
               list(),
               closeButtonWrapper(),
             ],
