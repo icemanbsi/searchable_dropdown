@@ -52,8 +52,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool asTabs = false;
   String selectedValue;
+  String preselectedValue = "dolor sit";
   ExampleNumber selectedNumber;
-  List<int> selectedItems;
+  List<int> selectedItems = [];
   final List<DropdownMenuItem> items = [];
 
   static const String appTitle = "Search Choices demo";
@@ -105,7 +106,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, SearchableDropdown> widgets;
+    Map<String, Widget> widgets;
     widgets = {
       "Single dialog": SearchableDropdown.single(
         items: items,
@@ -339,8 +340,8 @@ class _MyAppState extends State<MyApp> {
               RaisedButton(
                   onPressed: () {
                     setState(() {
-                      selectedItemsClose.clear();
-                      selectedItemsClose.addAll(
+                      selectedItems.clear();
+                      selectedItems.addAll(
                           Iterable<int>.generate(items.length).toList());
                     });
                   },
@@ -348,7 +349,7 @@ class _MyAppState extends State<MyApp> {
               RaisedButton(
                   onPressed: () {
                     setState(() {
-                      selectedItemsClose.clear();
+                      selectedItems.clear();
                     });
                   },
                   child: Text("Select none")),
@@ -377,8 +378,8 @@ class _MyAppState extends State<MyApp> {
               RaisedButton(
                   onPressed: () {
                     setState(() {
-                      selectedItemsClose.clear();
-                      selectedItemsClose.addAll(
+                      selectedItems.clear();
+                      selectedItems.addAll(
                           Iterable<int>.generate(items.length).toList());
                     });
                   },
@@ -386,7 +387,7 @@ class _MyAppState extends State<MyApp> {
               RaisedButton(
                   onPressed: () {
                     setState(() {
-                      selectedItemsClose.clear();
+                      selectedItems.clear();
                     });
                   },
                   child: Text("Select none")),
@@ -499,6 +500,33 @@ class _MyAppState extends State<MyApp> {
           });
         },
         isExpanded: true,
+      ),
+      "Update value from outside the plugin": Column(
+        children: [
+          SearchableDropdown(
+            items: items,
+            value: selectedValue,
+            hint: Text('Select One'),
+            searchHint: new Text(
+              'Select One',
+              style: new TextStyle(fontSize: 20),
+            ),
+            onChanged: (value) {
+              setState(() {
+                selectedValue = value;
+              });
+            },
+            isExpanded: true,
+          ),
+          FlatButton(
+            child: Text("Select $preselectedValue"),
+            onPressed: () {
+              setState(() {
+                selectedValue = preselectedValue;
+              });
+            },
+          ),
+        ],
       ),
     };
 

@@ -438,6 +438,14 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
 
   @override
   void initState() {
+    _updateSelectedIndex();
+    super.initState();
+  }
+
+  void _updateSelectedIndex() {
+    if (!_enabled) {
+      return;
+    }
     if (widget.multipleSelection) {
       selectedItems = List<int>.from(widget.selectedItems ?? []);
     } else if (widget.value != null) {
@@ -447,12 +455,12 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       }
     }
     if (selectedItems == null) selectedItems = [];
-    super.initState();
   }
 
   @override
   void didUpdateWidget(SearchableDropdown oldWidget) {
     super.didUpdateWidget(oldWidget);
+    _updateSelectedIndex();
   }
 
   Widget get menuWidget {

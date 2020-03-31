@@ -1,3 +1,6 @@
+## 1.1.3
+
+* Corrected issue #21 to allow selection update from outside the plugin. Thanks to @lechuk and @ettiennelr !
 
 ## 1.1.2
 
