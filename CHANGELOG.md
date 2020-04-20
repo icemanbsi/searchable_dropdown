@@ -1,3 +1,7 @@
+## 1.1.4
+
+* Bug: menu mode didn't open choices when on hosted web. https://github.com/lcuis/search_choices/issues/9 and https://github.com/icemanbsi/searchable_dropdown/issues/39
+
 ## 1.1.3
 
 * Corrected issue #21 to allow selection update from outside the plugin. Thanks to @lechuk and @ettiennelr !

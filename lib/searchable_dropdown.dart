@@ -9,6 +9,11 @@ class NotGiven {
   const NotGiven();
 }
 
+class PointerThisPlease<T> {
+  T value;
+  PointerThisPlease(this.value);
+}
+
 Widget prepareWidget(dynamic object,
     {dynamic parameter = const NotGiven(),
     BuildContext context,
@@ -363,7 +368,7 @@ class SearchableDropdown<T> extends StatefulWidget {
 
 class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
   List<int> selectedItems;
-  List<bool> displayMenu = [false];
+  PointerThisPlease<bool> displayMenu = PointerThisPlease<bool>(false);
 
   TextStyle get _textStyle =>
       widget.style ??
@@ -547,7 +552,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                     widget.onChanged(selectedResult);
                   }
                 } else {
-                  displayMenu.first = true;
+                  displayMenu.value = true;
                 }
                 setState(() {});
               },
@@ -658,7 +663,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                     style: TextStyle(color: Colors.red, fontSize: 13),
                   )
                 : validatorOutput,
-        displayMenu.first ? menuWidget : SizedBox.shrink(),
+        displayMenu.value ? menuWidget : SizedBox.shrink(),
       ],
     );
   }
@@ -688,7 +693,7 @@ class DropdownDialog<T> extends StatefulWidget {
   final dynamic doneButton;
   final Function validator;
   final bool dialogBox;
-  final List<bool> displayMenu;
+  final PointerThisPlease<bool> displayMenu;
   final BoxConstraints menuConstraints;
   final Function callOnPop;
   final Color menuBackgroundColor;
@@ -923,7 +928,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
     if (widget.dialogBox) {
       Navigator.pop(context);
     } else {
-      widget.displayMenu.first = false;
+      widget.displayMenu.value = false;
       if (widget.callOnPop != null) {
         widget.callOnPop();
       }
