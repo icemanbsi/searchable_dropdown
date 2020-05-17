@@ -83,6 +83,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   final BoxConstraints menuConstraints;
   final bool readOnly;
   final Color menuBackgroundColor;
+  final double padding;
 
   /// Search choices Widget with a single choice that opens a dialog or a menu to let the user do the selection conveniently with a search.
   ///
@@ -116,6 +117,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   /// @param menuConstraints [BoxConstraints] used to define the zone where to display the search menu. Example: BoxConstraints.tight(Size.fromHeight(250)) . Not to be used for dialogBox = true.
   /// @param readOnly [bool] whether to let the user choose the value to select or just present the selected value if any.
   /// @param menuBackgroundColor [Color] background color of the menu whether in dialog box or menu mode.
+  /// @param padding [double] sets the padding around the DropdownButton, defaults to 10.0
   factory SearchableDropdown.single({
     Key key,
     @required List<DropdownMenuItem<T>> items,
@@ -148,6 +150,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     BoxConstraints menuConstraints,
     bool readOnly = false,
     Color menuBackgroundColor,
+    double padding = 10.0,
   }) {
     return (SearchableDropdown._(
       key: key,
@@ -181,6 +184,7 @@ class SearchableDropdown<T> extends StatefulWidget {
       menuConstraints: menuConstraints,
       readOnly: readOnly,
       menuBackgroundColor: menuBackgroundColor,
+      padding: padding,
     ));
   }
 
@@ -215,6 +219,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   /// @param menuConstraints [BoxConstraints] used to define the zone where to display the search menu. Example: BoxConstraints.tight(Size.fromHeight(250)) . Not to be used for dialogBox = true.
   /// @param readOnly [bool] whether to let the user choose the value to select or just present the selected value if any.
   /// @param menuBackgroundColor [Color] background color of the menu whether in dialog box or menu mode.
+  /// @param padding [double] sets the padding around the DropdownButton, defaults to 10.0
   factory SearchableDropdown.multiple({
     Key key,
     @required List<DropdownMenuItem<T>> items,
@@ -246,6 +251,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     BoxConstraints menuConstraints,
     bool readOnly = false,
     Color menuBackgroundColor,
+    double padding = 10.0,
   }) {
     return (SearchableDropdown._(
       key: key,
@@ -279,6 +285,7 @@ class SearchableDropdown<T> extends StatefulWidget {
       menuConstraints: menuConstraints,
       readOnly: readOnly,
       menuBackgroundColor: menuBackgroundColor,
+      padding: padding,
     ));
   }
 
@@ -315,6 +322,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.menuConstraints,
     this.readOnly = false,
     this.menuBackgroundColor,
+    this.padding,
   })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -355,6 +363,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.menuConstraints,
     this.readOnly = false,
     this.menuBackgroundColor,
+    this.padding,
   })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -631,7 +640,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
         Stack(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(widget.padding),
               child: result,
             ),
             widget.underline is NotGiven

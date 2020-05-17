@@ -89,6 +89,7 @@ factory SearchableDropdown.single({
     BoxConstraints menuConstraints,
     bool readOnly: false,
     Color menuBackgroundColor,
+    double padding = 10.0,
 }
 )
 ```
@@ -123,6 +124,7 @@ factory SearchableDropdown.single({
 * menuConstraints BoxConstraints used to define the zone where to display the search menu. Example: BoxConstraints.tight(Size.fromHeight(250)) . Not to be used for dialogBox = true.
 * readOnly bool whether to let the user choose the value to select or just present the selected value if any.
 * menuBackgroundColor Color background color of the menu whether in dialog box or menu mode.
+* padding double sets the padding around the DropdownButton, defaults to 10.0
 
 
 #### Multiple choice constructor
@@ -162,6 +164,7 @@ SearchableDropdown<T>.multiple(
     BoxConstraints menuConstraints,
     bool readOnly: false,
     Color menuBackgroundColor,
+    double padding: 10.0,
 }
 )
 ```
@@ -195,6 +198,7 @@ SearchableDropdown<T>.multiple(
 * menuConstraints BoxConstraints used to define the zone where to display the search menu. Example: BoxConstraints.tight(Size.fromHeight(250)) . Not to be used for dialogBox = true.
 * readOnly bool whether to let the user choose the value to select or just present the selected value if any.
 * menuBackgroundColor Color background color of the menu whether in dialog box or menu mode.
+* padding double sets the padding around the DropdownButton, defaults to 10.0
 
 #### Example app usage
 
@@ -716,6 +720,7 @@ In your pull request, feel free to add your line in the contributors section bel
 ### Contributors
 * https://github.com/icemanbsi
 * https://github.com/lcuis
+* https://github.com/avalentic
 
 ## CI/CD
 
