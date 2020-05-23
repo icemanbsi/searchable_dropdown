@@ -74,6 +74,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   final Function searchFn;
   final Function onClear;
   final Function selectedValueWidgetFn;
+  final Function selectedValueContainerWidgetFn;
   final TextInputType keyboardType;
   final Function validator;
   final bool multipleSelection;
@@ -108,6 +109,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   /// @param searchFn [Function] with parameters: __keyword__, __items__ returning [List<int>] as the list of indexes for the items to be displayed.
   /// @param onClear [Function] with no parameter not returning executed when the clear icon is tapped.
   /// @param selectedValueWidgetFn [Function] with parameter: __item__ returning [Widget] to be used to display the selected value.
+  /// @param selectedValueContainerWidgetFn [Function] with parameter  __items__ returning [Widget] to be used as container for selected values
   /// @param keyboardType used for the search.
   /// @param validator [Function] with parameter: __value__ returning [String] displayed below selected value when not valid and null when valid.
   /// @param assertUniqueValue whether to run a consistency check of the list of items.
@@ -208,6 +210,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   /// @param searchFn [Function] with parameters: __keyword__, __items__ returning [List<int>] as the list of indexes for the items to be displayed.
   /// @param onClear [Function] with no parameter not returning executed when the clear icon is tapped.
   /// @param selectedValueWidgetFn [Function] with parameter: __item__ returning [Widget] to be used to display the selected values.
+  /// @param selectedValueContainerWidgetFn [Function] with parameter  __items__ returning [Widget] to be used as container for selected values
   /// @param keyboardType used for the search.
   /// @param validator [Function] with parameter: __selectedItems__ returning [String] displayed below selected values when not valid and null when valid.
   /// @param displayItem [Function] with parameters: __item__, __selected__ returning [Widget] to be displayed in the search list.
@@ -239,6 +242,8 @@ class SearchableDropdown<T> extends StatefulWidget {
     Function searchFn,
     Function onClear,
     Function selectedValueWidgetFn,
+    Function selectedValueContainerWidgetFn,
+
     TextInputType keyboardType = TextInputType.text,
     Function validator,
     Function displayItem,
@@ -266,6 +271,7 @@ class SearchableDropdown<T> extends StatefulWidget {
       clearIcon: clearIcon,
       onClear: onClear,
       selectedValueWidgetFn: selectedValueWidgetFn,
+      selectedValueContainerWidgetFn: selectedValueContainerWidgetFn,
       keyboardType: keyboardType,
       validator: validator,
       label: label,
@@ -303,6 +309,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.clearIcon = const Icon(Icons.clear),
     this.onClear,
     this.selectedValueWidgetFn,
+    this.selectedValueContainerWidgetFn,
     this.keyboardType = TextInputType.text,
     this.validator,
     this.label,
@@ -343,6 +350,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.clearIcon = const Icon(Icons.clear),
     this.onClear,
     this.selectedValueWidgetFn,
+    this.selectedValueContainerWidgetFn,
     this.keyboardType = TextInputType.text,
     this.validator,
     this.label,
@@ -526,10 +534,13 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     });
     if (list.isEmpty && hintIndex != null) {
       innerItemsWidget = items[hintIndex];
-    } else {
+    } else if (widget.selectedValueContainerWidgetFn == null){
       innerItemsWidget = Column(
         children: list,
       );
+    }
+    else {
+      innerItemsWidget = widget.selectedValueContainerWidgetFn(list);
     }
     final EdgeInsetsGeometry padding = ButtonTheme.of(context).alignedDropdown
         ? _kAlignedButtonPadding

@@ -322,6 +322,30 @@ class _MyAppState extends State<MyApp> {
         isExpanded: true,
         menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
       ),
+      "Select Multiple with custom Selected values container": SearchableDropdown.multiple(
+        items: items,
+        selectedItems: selectedItems,
+        hint: "Select any",
+        searchHint: "",
+        doneButton: "Close",
+        closeButton: SizedBox.shrink(),
+        onChanged: (value) {
+          setState(() {
+            selectedItems = value;
+          });
+        },
+        dialogBox: false,
+        isExpanded: true,
+        menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
+        selectedValueWidgetFn: (item) => Text(
+          item,
+          overflow: TextOverflow.ellipsis,
+        ),
+        selectedValueContainerWidgetFn: (items) => Wrap(
+          children: items,
+          direction: Axis.horizontal,
+        ),
+      ),
       "Multi menu select all/none": SearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
