@@ -155,6 +155,7 @@ SearchableDropdown<T>.multiple(
     Function searchFn,
     Function onClear,
     Function selectedValueWidgetFn,
+    Function selectedValueContainerWidgetFn,
     TextInputType keyboardType: TextInputType.text,
     Function validator,
     Function displayItem,
@@ -188,6 +189,7 @@ SearchableDropdown<T>.multiple(
 * searchFn Function with parameters: keyword, items returning List<int> as the list of indexes for the items to be displayed.
 * onClear Function with no parameter not returning executed when the clear icon is tapped.
 * selectedValueWidgetFn Function with parameter: item returning Widget to be used to display the selected values.
+* selectedValueContainerWidgetFn Function with parameter: items returning widget to be used as container for selected values
 * keyboardType used for the search.
 * validator Function with parameter: selectedItems returning String displayed below selected values when not valid and null when valid.
 * displayItem Function with parameters: item, selected returning Widget to be displayed in the search list.
@@ -694,6 +696,33 @@ wouldn't want to go right now",
       ),
 ```
 
+## Select Multiple with custom Selected values container
+```dart
+SearchableDropdown.multiple(
+        items: items,
+        selectedItems: selectedItems,
+        hint: "Select any",
+        searchHint: "",
+        doneButton: "Close",
+        closeButton: SizedBox.shrink(),
+        onChanged: (value) {
+          setState(() {
+            selectedItems = value;
+          });
+        },
+        dialogBox: false,
+        isExpanded: true,
+        menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
+        selectedValueWidgetFn: (item) => Text(
+          item,
+          overflow: TextOverflow.ellipsis,
+        ),
+        selectedValueContainerWidgetFn: (items) => Wrap(
+          children: items,
+          direction: Axis.horizontal,
+        ),
+      ),
+```
 ## Feature requests/comments/questions/bugs
 
 Feel free to log your feature requests/comments/questions/bugs here:
