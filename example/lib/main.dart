@@ -113,6 +113,8 @@ class _MyAppState extends State<MyApp> {
         value: selectedValue,
         hint: "Select one",
         searchHint: "Select one",
+        isAutoFocus: true,
+        // use true to open keyboard by default
         onChanged: (value) {
           setState(() {
             selectedValue = value;
@@ -144,6 +146,8 @@ class _MyAppState extends State<MyApp> {
         items: items,
         value: selectedValue,
         hint: "Select one",
+        isAutoFocus: true,
+        // use true to open keyboard by default
         searchHint: "Select one",
         onChanged: (value) {
           setState(() {
