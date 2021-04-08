@@ -407,7 +407,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T?>> {
   dynamic get selectedResult {
     return (widget.multipleSelection
         ? selectedItems
-        : selectedItems.isNotEmpty
+        : (selectedItems.isNotEmpty && widget.items.isNotEmpty)
             ? widget.items[selectedItems.first].value
             : null);
   }
@@ -489,9 +489,18 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T?>> {
     }
     Widget innerItemsWidget;
     var list = <Widget?>[];
-    selectedItems.forEach((item) {
-      list.add(widget.selectedValueWidgetFn != null ? widget.selectedValueWidgetFn!(widget.items[item].value) : items[item]);
-    });
+    try {
+      selectedItems.forEach((item) {
+        if (widget.selectedValueWidgetFn != null) {
+          if (widget.items.length <= item) {
+            return;
+          }
+        } else if (items.length <= item) {
+          return;
+        }
+        list.add(widget.selectedValueWidgetFn != null ? widget.selectedValueWidgetFn!(widget.items[item].value) : items[item]);
+      });
+    } catch (e) {}
     if (list.isEmpty && hintIndex != null) {
       innerItemsWidget = items[hintIndex];
     } else {
@@ -668,7 +677,7 @@ class DropdownDialog<T> extends StatefulWidget {
     this.menuConstraints,
     this.callOnPop,
     this.menuBackgroundColor,
-  })  : super(key: key);
+  }) : super(key: key);
 
   _DropdownDialogState<T> createState() => new _DropdownDialogState<T>();
 }
