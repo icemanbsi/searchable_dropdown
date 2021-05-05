@@ -507,7 +507,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T?>> {
       ));
     }
     Widget innerItemsWidget;
-    List<Widget?> list = [];
+    List<Widget> list = [];
     selectedItems?.forEach((item) {
       list.add(widget.selectedValueWidgetFn != null
           ? widget.selectedValueWidgetFn!(widget.items[item].value)
