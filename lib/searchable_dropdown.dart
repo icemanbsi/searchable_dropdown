@@ -517,7 +517,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T?>> {
       innerItemsWidget = items[hintIndex];
     } else {
       innerItemsWidget = Column(
-        children: list as List<Widget>,
+        children: list,
       );
     }
     final EdgeInsetsGeometry padding = ButtonTheme.of(context).alignedDropdown
