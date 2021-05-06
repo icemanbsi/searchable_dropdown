@@ -14,13 +14,10 @@ class PointerThisPlease<T> {
   PointerThisPlease(this.value);
 }
 
-Widget? prepareWidget(dynamic object,
+Widget prepareWidget(dynamic object,
     {dynamic parameter = const NotGiven(),
     BuildContext? context,
     Function? stringToWidgetFunction}) {
-  if (object == null) {
-    return (null);
-  }
   if (object is Widget) {
     return (object);
   }
@@ -490,13 +487,10 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T?>> {
     final List<Widget> items =
         _enabled ? List<Widget>.from(widget.items) : <Widget>[];
     int? hintIndex;
-    if (widget.hint != null ||
-        (!_enabled && prepareWidget(widget.disabledHint) != null)) {
+    if (widget.hint != null || (!_enabled)) {
       final Widget? emplacedHint = _enabled
           ? prepareWidget(widget.hint)
-          : DropdownMenuItem<Widget>(
-              child: prepareWidget(widget.disabledHint) ??
-                  prepareWidget(widget.hint)!);
+          : DropdownMenuItem<Widget>(child: prepareWidget(widget.disabledHint));
       hintIndex = items.length;
       items.add(DefaultTextStyle(
         style: _textStyle!.copyWith(color: Theme.of(context).hintColor),
@@ -555,8 +549,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T?>> {
                 color: _iconColor,
                 size: widget.iconSize,
               ),
-              child: prepareWidget(widget.icon, parameter: selectedResult) ??
-                  SizedBox.shrink(),
+              child: prepareWidget(widget.icon, parameter: selectedResult),
             ),
           ],
         ));
@@ -616,7 +609,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T?>> {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          labelOutput ?? SizedBox.shrink(),
+          labelOutput,
           Stack(
             children: <Widget>[
               Padding(
@@ -630,17 +623,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T?>> {
                       right: 0.0,
                       bottom: bottom,
                       child: prepareWidget(widget.underline,
-                              parameter: selectedResult) ??
-                          Container(
-                            height: 1.0,
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        color: valid
-                                            ? Color(0xFFBDBDBD)
-                                            : Colors.red,
-                                        width: 0.0))),
-                          ),
+                          parameter: selectedResult),
                     ),
             ],
           ),
@@ -807,7 +790,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       validatorOutput = widget.validator!(selectedResult);
     }
 
-    Widget? validatorOutputWidget = valid
+    Widget validatorOutputWidget = valid
         ? SizedBox.shrink()
         : validatorOutput is String
             ? Text(
@@ -816,7 +799,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
               )
             : validatorOutput;
 
-    Widget? doneButtonWidget =
+    Widget doneButtonWidget =
         widget.multipleSelection! || widget.doneButton != null
             ? prepareWidget(widget.doneButton,
                 parameter: selectedResult,
@@ -838,7 +821,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  prepareWidget(widget.hint)!,
+                  prepareWidget(widget.hint),
                   Column(
                     children: <Widget?>[doneButtonWidget, validatorOutputWidget]
                         as List<Widget>,
@@ -847,8 +830,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
           )
         : new Container(
             child: Column(
-              children: <Widget?>[doneButtonWidget, validatorOutputWidget]
-                  as List<Widget>,
+              children: <Widget>[doneButtonWidget, validatorOutputWidget],
             ),
           );
   }
@@ -978,29 +960,28 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
 
   Widget closeButtonWrapper() {
     return (prepareWidget(widget.closeButton, parameter: selectedResult,
-            stringToWidgetFunction: (string) {
-          return (Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    pop();
-                  },
-                  child: Container(
-                      constraints: BoxConstraints(
-                          maxWidth: MediaQuery.of(context).size.width / 2),
-                      child: Text(
-                        string,
-                        style: defaultButtonStyle,
-                        overflow: TextOverflow.ellipsis,
-                      )),
-                )
-              ],
-            ),
-          ));
-        }) ??
-        SizedBox.shrink());
+        stringToWidgetFunction: (string) {
+      return (Container(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            TextButton(
+              onPressed: () {
+                pop();
+              },
+              child: Container(
+                  constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width / 2),
+                  child: Text(
+                    string,
+                    style: defaultButtonStyle,
+                    overflow: TextOverflow.ellipsis,
+                  )),
+            )
+          ],
+        ),
+      ));
+    }));
   }
 }
