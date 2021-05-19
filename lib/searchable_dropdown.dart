@@ -350,7 +350,7 @@ class SearchableDropdown<T> extends StatefulWidget {
         super(key: key);
 
   @override
-  _SearchableDropdownState<T> createState() => new _SearchableDropdownState();
+  _SearchableDropdownState<T> createState() => _SearchableDropdownState();
 }
 
 class _SearchableDropdownState<T> extends State<SearchableDropdown<T?>> {
@@ -679,12 +679,13 @@ class DropdownDialog<T> extends StatefulWidget {
     this.menuBackgroundColor,
   }) : super(key: key);
 
-  _DropdownDialogState<T> createState() => new _DropdownDialogState<T>();
+  _DropdownDialogState<T> createState() => _DropdownDialogState<T>();
 }
 
 class _DropdownDialogState<T> extends State<DropdownDialog> {
-  TextEditingController txtSearch = new TextEditingController();
-  TextStyle defaultButtonStyle = new TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
+  TextEditingController txtSearch = TextEditingController();
+  final scrollController = ScrollController();
+  TextStyle defaultButtonStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
   List<int>? shownIndexes = [];
   Function? searchFn;
 
@@ -739,13 +740,13 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
     return AnimatedContainer(
       padding: MediaQuery.of(context).viewInsets,
       duration: const Duration(milliseconds: 300),
-      child: new Card(
+      child: Card(
         color: widget.menuBackgroundColor,
         margin: EdgeInsets.symmetric(vertical: widget.dialogBox! ? 10 : 5, horizontal: widget.dialogBox! ? 10 : 4),
-        child: new Container(
+        child: Container(
           constraints: widget.menuConstraints,
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-          child: new Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -797,7 +798,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
           })
         : SizedBox.shrink();
     return widget.hint != null
-        ? new Container(
+        ? Container(
             margin: EdgeInsets.only(bottom: 8),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               prepareWidget(widget.hint)!,
@@ -806,7 +807,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
               ),
             ]),
           )
-        : new Container(
+        : Container(
             child: Column(
               children: <Widget>[doneButtonWidget!, validatorOutputWidget!],
             ),
@@ -814,10 +815,10 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
   }
 
   Widget searchBar() {
-    return new Container(
-      child: new Stack(
+    return Container(
+      child: Stack(
         children: <Widget>[
-          new TextField(
+          TextField(
             controller: txtSearch,
             decoration: InputDecoration(contentPadding: EdgeInsets.symmetric(horizontal: 32, vertical: 12)),
             autofocus: true,
@@ -827,24 +828,24 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
             },
             keyboardType: widget.keyboardType,
           ),
-          new Positioned(
+          Positioned(
             left: 0,
             top: 0,
             bottom: 0,
-            child: new Center(
-              child: new Icon(
+            child: Center(
+              child: Icon(
                 Icons.search,
                 size: 24,
               ),
             ),
           ),
           txtSearch.text.isNotEmpty
-              ? new Positioned(
+              ? Positioned(
                   right: 0,
                   top: 0,
                   bottom: 0,
-                  child: new Center(
-                    child: new InkWell(
+                  child: Center(
+                    child: InkWell(
                       onTap: () {
                         _updateShownIndexes('');
                         setState(() {
@@ -852,11 +853,11 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
                         });
                       },
                       borderRadius: BorderRadius.all(Radius.circular(32)),
-                      child: new Container(
+                      child: Container(
                         width: 32,
                         height: 32,
-                        child: new Center(
-                          child: new Icon(
+                        child: Center(
+                          child: Icon(
                             Icons.close,
                             size: 24,
                           ),
@@ -865,7 +866,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
                     ),
                   ),
                 )
-              : new Container(),
+              : Container(),
         ],
       ),
     );
@@ -883,12 +884,14 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
   }
 
   Widget list() {
-    return new Expanded(
+    return Expanded(
       child: Scrollbar(
-        child: new ListView.builder(
+        controller: scrollController,
+        child: ListView.builder(
+          controller: scrollController,
           itemBuilder: (context, index) {
             DropdownMenuItem item = widget.items[shownIndexes![index]];
-            return new InkWell(
+            return InkWell(
               onTap: () {
                 if (widget.multipleSelection!) {
                   setState(() {
