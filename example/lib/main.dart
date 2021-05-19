@@ -217,7 +217,7 @@ class _MyAppState extends State<MyApp> {
                   ))));
         },
         doneButton: (selectedItemsDone, doneContext) {
-          return (RaisedButton(
+          return (ElevatedButton(
               onPressed: () {
                 Navigator.pop(doneContext);
                 setState(() {});
@@ -227,7 +227,7 @@ class _MyAppState extends State<MyApp> {
         closeButton: null,
         style: TextStyle(fontStyle: FontStyle.italic),
         searchFn: (String keyword, items) {
-          List<int> ret = List<int>();
+          List<int> ret = <int>[];
           if (keyword != null && items != null && keyword.isNotEmpty) {
             keyword.split(" ").forEach((k) {
               int i = 0;
@@ -278,7 +278,7 @@ class _MyAppState extends State<MyApp> {
           });
         },
         doneButton: (selectedItemsDone, doneContext) {
-          return (RaisedButton(
+          return (ElevatedButton(
               onPressed: selectedItemsDone.length != 3
                   ? null
                   : () {
@@ -337,7 +337,7 @@ class _MyAppState extends State<MyApp> {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     setState(() {
                       selectedItems.clear();
@@ -346,7 +346,7 @@ class _MyAppState extends State<MyApp> {
                     });
                   },
                   child: Text("Select all")),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     setState(() {
                       selectedItems.clear();
@@ -375,7 +375,7 @@ class _MyAppState extends State<MyApp> {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     setState(() {
                       selectedItems.clear();
@@ -384,7 +384,7 @@ class _MyAppState extends State<MyApp> {
                     });
                   },
                   child: Text("Select all")),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () {
                     setState(() {
                       selectedItems.clear();
@@ -518,7 +518,7 @@ class _MyAppState extends State<MyApp> {
             },
             isExpanded: true,
           ),
-          FlatButton(
+          ElevatedButton(
             child: Text("Select $preselectedValue"),
             onPressed: () {
               setState(() {
