@@ -25,7 +25,7 @@ class ExampleNumber {
     15: "fifteen",
   };
 
-  String get numberString {
+  String? get numberString {
     return (map.containsKey(number) ? map[number] : "unknown");
   }
 
@@ -51,9 +51,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool asTabs = false;
-  String selectedValue;
+  String? selectedValue;
   String preselectedValue = "dolor sit";
-  ExampleNumber selectedNumber;
+  ExampleNumber? selectedNumber;
   List<int> selectedItems = [];
   final List<DropdownMenuItem> items = [];
 
@@ -227,8 +227,8 @@ class _MyAppState extends State<MyApp> {
         closeButton: null,
         style: TextStyle(fontStyle: FontStyle.italic),
         searchFn: (String keyword, items) {
-          List<int> ret = List<int>();
-          if (keyword != null && items != null && keyword.isNotEmpty) {
+          List<int> ret = <int>[];
+          if (items != null && keyword.isNotEmpty) {
             keyword.split(" ").forEach((k) {
               int i = 0;
               items.forEach((item) {
@@ -418,7 +418,7 @@ class _MyAppState extends State<MyApp> {
       "Single dialog object": SearchableDropdown.single(
         items: ExampleNumber.list.map((exNum) {
           return (DropdownMenuItem(
-              child: Text(exNum.numberString), value: exNum));
+              child: Text(exNum.numberString!), value: exNum));
         }).toList(),
         value: selectedNumber,
         hint: "Select one number",
@@ -482,7 +482,7 @@ class _MyAppState extends State<MyApp> {
         hint: "Select one",
         searchHint: "Select one",
         disabledHint: "Disabled",
-        onChanged: null,
+        onChanged: (){},
         dialogBox: true,
         isExpanded: true,
       ),
