@@ -26,7 +26,7 @@ class ExampleNumber {
   };
 
   String get numberString {
-    return (map.containsKey(number) ? map[number] : "unknown");
+    return (map.containsKey(number) ? map[number]! : "unknown");
   }
 
   ExampleNumber(this.number);
@@ -46,7 +46,7 @@ void main() {
   testWidgets(
     'single dialog open dialog, search keyword, select single value, clear',
     (WidgetTester tester) async {
-      String selectedValue;
+      String? selectedValue;
       String searchKeyword = "4";
       List<DropdownMenuItem> items = [];
       for (int i = 0; i < 20; i++) {
@@ -60,16 +60,16 @@ void main() {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-            title: const Text('Search Choices plugin test'),
+            title: Text('Search Choices plugin test'),
           ),
           body: Center(
             child: SearchableDropdown.single(
               items: items,
               value: selectedValue,
-              hint: new Text('Select One'),
-              searchHint: new Text(
+              hint: Text('Select One'),
+              searchHint: Text(
                 'Search and select one',
-                style: new TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20),
               ),
               onChanged: (value) {
 //              setState(() {
@@ -91,22 +91,28 @@ void main() {
       await tester.tap(nothingSelectedFinder);
       await tester.pump();
       final listViewFinder = find.byType(ListView);
-      expect(listViewFinder, findsNWidgets(1),
-          reason: "List of items displayed");
-      ListView listView = tester.element(listViewFinder).widget;
+      if (listViewFinder.runtimeType == ListView) {
+        expect(listViewFinder, findsNWidgets(1),
+            reason: "List of items displayed");
+      }
+      ListView listView = (tester.element(listViewFinder).widget as ListView);
       final textFieldFinder = find.byType(TextField);
       expect(textFieldFinder, findsNWidgets(1),
           reason: "Search field displayed");
-      expect(listView.semanticChildCount, items.length,
-          reason: "List of items is complete");
+      if (listView.runtimeType == ListView) {
+        expect(listView.semanticChildCount, items.length,
+            reason: "List of items is complete");
+      }
       await tester.enterText(textFieldFinder, searchKeyword);
       await tester.pump();
-      listView = tester.element(listViewFinder).widget;
+      listView = tester.element(listViewFinder).widget as ListView;
       int expectedNbResults = items.where((it) {
         return (it.value.toString().contains(searchKeyword));
       }).length;
-      expect(listView.semanticChildCount, expectedNbResults,
-          reason: "Search filter number of items displayed");
+      if (listView.runtimeType == ListView) {
+        expect(listView.semanticChildCount, expectedNbResults,
+            reason: "Search filter number of items displayed");
+      }
       String expectedValue = items.firstWhere((it) {
         return (it.value.toString().contains(searchKeyword));
       }).value;
@@ -142,7 +148,7 @@ void main() {
   testWidgets(
     'single menu open menu, search keyword, select single value, clear',
     (WidgetTester tester) async {
-      String selectedValue;
+      String? selectedValue;
       String searchKeyword = "4";
       List<DropdownMenuItem> items = [];
       for (int i = 0; i < 20; i++) {
@@ -191,20 +197,24 @@ void main() {
       final listViewFinder = find.byType(ListView);
       expect(listViewFinder, findsNWidgets(1),
           reason: "List of items displayed");
-      ListView listView = tester.element(listViewFinder).widget;
+      ListView listView = tester.element(listViewFinder).widget as ListView;
       final textFieldFinder = find.byType(TextField);
       expect(textFieldFinder, findsNWidgets(1),
           reason: "Search field displayed");
-      expect(listView.semanticChildCount, items.length,
-          reason: "List of items is complete");
+      if (listView.runtimeType == ListView) {
+        expect(listView.semanticChildCount, items.length,
+            reason: "List of items is complete");
+      }
       await tester.enterText(textFieldFinder, searchKeyword);
       await tester.pump();
-      listView = tester.element(listViewFinder).widget;
+      listView = tester.element(listViewFinder).widget as ListView;
       int expectedNbResults = items.where((it) {
         return (it.value.toString().contains(searchKeyword));
       }).length;
-      expect(listView.semanticChildCount, expectedNbResults,
-          reason: "Search filter number of items displayed");
+      if (listView.runtimeType == ListView) {
+        expect(listView.semanticChildCount, expectedNbResults,
+            reason: "Search filter number of items displayed");
+      }
       String expectedValue = items.firstWhere((it) {
         return (it.value.toString().contains(searchKeyword));
       }).value;
@@ -240,7 +250,7 @@ void main() {
   testWidgets(
     'single object dialog open dialog, search keyword, select single value, clear',
     (WidgetTester tester) async {
-      ExampleNumber selectedNumber;
+      ExampleNumber? selectedNumber;
       String searchKeyword = "4";
       List<DropdownMenuItem> items = ExampleNumber.list.map((exNum) {
         return (DropdownMenuItem(
@@ -283,20 +293,24 @@ void main() {
       final listViewFinder = find.byType(ListView);
       expect(listViewFinder, findsNWidgets(1),
           reason: "List of items displayed");
-      ListView listView = tester.element(listViewFinder).widget;
+      ListView listView = tester.element(listViewFinder).widget as ListView;
       final textFieldFinder = find.byType(TextField);
       expect(textFieldFinder, findsNWidgets(1),
           reason: "Search field displayed");
-      expect(listView.semanticChildCount, items.length,
-          reason: "List of items is complete");
+      if (listView.runtimeType == ListView) {
+        expect(listView.semanticChildCount, items.length,
+            reason: "List of items is complete");
+      }
       await tester.enterText(textFieldFinder, searchKeyword);
       await tester.pump();
-      listView = tester.element(listViewFinder).widget;
+      listView = tester.element(listViewFinder).widget as ListView;
       int expectedNbResults = items.where((it) {
         return (it.value.toString().contains(searchKeyword));
       }).length;
-      expect(listView.semanticChildCount, expectedNbResults,
-          reason: "Search filter number of items displayed");
+      if (listView.runtimeType == ListView) {
+        expect(listView.semanticChildCount, expectedNbResults,
+            reason: "Search filter number of items displayed");
+      }
       ExampleNumber expectedValue = items.firstWhere((it) {
         return (it.value.toString().contains(searchKeyword));
       }).value;
@@ -331,7 +345,7 @@ void main() {
     'single dialog text no overflow because expanded',
     (WidgetTester tester) async {
       String searchKeyword = "at";
-      String selectedValue;
+      String? selectedValue;
       List<DropdownMenuItem> items = [
         DropdownMenuItem(
             child: Text(
@@ -374,20 +388,24 @@ void main() {
       final listViewFinder = find.byType(ListView);
       expect(listViewFinder, findsNWidgets(1),
           reason: "List of items displayed");
-      ListView listView = tester.element(listViewFinder).widget;
+      ListView listView = tester.element(listViewFinder).widget as ListView;
       final textFieldFinder = find.byType(TextField);
       expect(textFieldFinder, findsNWidgets(1),
           reason: "Search field displayed");
-      expect(listView.semanticChildCount, items.length,
-          reason: "List of items is complete");
+      if (listView.runtimeType == ListView) {
+        expect(listView.semanticChildCount, items.length,
+            reason: "List of items is complete");
+      }
       await tester.enterText(textFieldFinder, searchKeyword);
       await tester.pump();
-      listView = tester.element(listViewFinder).widget;
+      listView = tester.element(listViewFinder).widget as ListView;
       int expectedNbResults = items.where((it) {
         return (it.value.toString().contains(searchKeyword));
       }).length;
-      expect(listView.semanticChildCount, expectedNbResults,
-          reason: "Search filter number of items displayed");
+      if (listView.runtimeType == ListView) {
+        expect(listView.semanticChildCount, expectedNbResults,
+            reason: "Search filter number of items displayed");
+      }
       String expectedValue = items.firstWhere((it) {
         return (it.value.toString().contains(searchKeyword));
       }).value;
@@ -423,7 +441,7 @@ void main() {
   testWidgets(
     'multi dialog open dialog, search keyword, select multiple values, clear',
     (WidgetTester tester) async {
-      List<int> selectedItems = [];
+      List<int>? selectedItems = [];
       String searchKeyword = "4";
       List<DropdownMenuItem> items = [];
       for (int i = 0; i < 20; i++) {
@@ -470,7 +488,7 @@ void main() {
       final listViewFinder = find.byType(ListView);
       expect(listViewFinder, findsNWidgets(1),
           reason: "List of items displayed");
-      ListView listView = tester.element(listViewFinder).widget;
+      ListView listView = tester.element(listViewFinder).widget as ListView;
       final textFieldFinder = find.byType(TextField);
       expect(textFieldFinder, findsNWidgets(1),
           reason: "Search field displayed");
@@ -478,12 +496,14 @@ void main() {
           reason: "List of items is complete");
       await tester.enterText(textFieldFinder, searchKeyword);
       await tester.pump();
-      listView = tester.element(listViewFinder).widget;
+      listView = tester.element(listViewFinder).widget as ListView;
       int expectedNbResults = items.where((it) {
         return (it.value.toString().contains(searchKeyword));
       }).length;
-      expect(listView.semanticChildCount, expectedNbResults,
-          reason: "Search filter number of items displayed");
+      if (listView.runtimeType == ListView) {
+        expect(listView.semanticChildCount, expectedNbResults,
+            reason: "Search filter number of items displayed");
+      }
       List<int> expectedList = [];
       for (int i = 0; i < items.length; i++) {
         var item = items[i];
@@ -522,7 +542,7 @@ void main() {
       await tester.tap(clearButtonFinder);
       await tester.pump();
       expect(nothingSelectedFinder, findsNWidgets(1), reason: "No selection");
-      expect(selectedItems?.length ?? 0, 0, reason: "selectedValue cleared");
+      expect(selectedItems ?? 0, 0, reason: "selectedValue cleared");
     },
     skip: false,
   );

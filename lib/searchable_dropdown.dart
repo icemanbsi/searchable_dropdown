@@ -11,13 +11,14 @@ class NotGiven {
 
 class PointerThisPlease<T> {
   T value;
+
   PointerThisPlease(this.value);
 }
 
-Widget prepareWidget(dynamic object,
+Widget? prepareWidget(dynamic object,
     {dynamic parameter = const NotGiven(),
-    BuildContext context,
-    Function stringToWidgetFunction}) {
+    BuildContext? context,
+    Function? stringToWidgetFunction}) {
   if (object == null) {
     return (null);
   }
@@ -52,10 +53,10 @@ Widget prepareWidget(dynamic object,
 }
 
 class SearchableDropdown<T> extends StatefulWidget {
-  final List<DropdownMenuItem<T>> items;
-  final Function onChanged;
-  final T value;
-  final TextStyle style;
+  final List<DropdownMenuItem<T>>? items;
+  final Function? onChanged;
+  final T? value;
+  final TextStyle? style;
   final dynamic searchHint;
   final dynamic hint;
   final dynamic disabledHint;
@@ -65,24 +66,24 @@ class SearchableDropdown<T> extends StatefulWidget {
   final dynamic label;
   final dynamic closeButton;
   final bool displayClearIcon;
-  final Icon clearIcon;
-  final Color iconEnabledColor;
-  final Color iconDisabledColor;
-  final double iconSize;
-  final bool isExpanded;
+  final Icon? clearIcon;
+  final Color? iconEnabledColor;
+  final Color? iconDisabledColor;
+  final double? iconSize;
+  final bool? isExpanded;
   final bool isCaseSensitiveSearch;
-  final Function searchFn;
-  final Function onClear;
-  final Function selectedValueWidgetFn;
+  final Function? searchFn;
+  final Function? onClear;
+  final Function? selectedValueWidgetFn;
   final TextInputType keyboardType;
-  final Function validator;
+  final Function? validator;
   final bool multipleSelection;
-  final List<int> selectedItems;
-  final Function displayItem;
-  final bool dialogBox;
-  final BoxConstraints menuConstraints;
-  final bool readOnly;
-  final Color menuBackgroundColor;
+  final List<int>? selectedItems;
+  final Function? displayItem;
+  final bool? dialogBox;
+  final BoxConstraints? menuConstraints;
+  final bool? readOnly;
+  final Color? menuBackgroundColor;
 
   /// Search choices Widget with a single choice that opens a dialog or a menu to let the user do the selection conveniently with a search.
   ///
@@ -117,11 +118,11 @@ class SearchableDropdown<T> extends StatefulWidget {
   /// @param readOnly [bool] whether to let the user choose the value to select or just present the selected value if any.
   /// @param menuBackgroundColor [Color] background color of the menu whether in dialog box or menu mode.
   factory SearchableDropdown.single({
-    Key key,
-    @required List<DropdownMenuItem<T>> items,
-    @required Function onChanged,
-    T value,
-    TextStyle style,
+    Key? key,
+    required List<DropdownMenuItem<T>> items,
+    required Function onChanged,
+    T? value,
+    TextStyle? style,
     dynamic searchHint,
     dynamic hint,
     dynamic disabledHint,
@@ -132,22 +133,22 @@ class SearchableDropdown<T> extends StatefulWidget {
     dynamic closeButton = "Close",
     bool displayClearIcon = true,
     Icon clearIcon = const Icon(Icons.clear),
-    Color iconEnabledColor,
-    Color iconDisabledColor,
+    Color? iconEnabledColor,
+    Color? iconDisabledColor,
     double iconSize = 24.0,
     bool isExpanded = false,
     bool isCaseSensitiveSearch = false,
-    Function searchFn,
-    Function onClear,
-    Function selectedValueWidgetFn,
+    Function? searchFn,
+    Function? onClear,
+    Function? selectedValueWidgetFn,
     TextInputType keyboardType = TextInputType.text,
-    Function validator,
+    Function? validator,
     bool assertUniqueValue = true,
-    Function displayItem,
+    Function? displayItem,
     bool dialogBox = true,
-    BoxConstraints menuConstraints,
+    BoxConstraints? menuConstraints,
     bool readOnly = false,
-    Color menuBackgroundColor,
+    Color? menuBackgroundColor,
   }) {
     return (SearchableDropdown._(
       key: key,
@@ -216,11 +217,11 @@ class SearchableDropdown<T> extends StatefulWidget {
   /// @param readOnly [bool] whether to let the user choose the value to select or just present the selected value if any.
   /// @param menuBackgroundColor [Color] background color of the menu whether in dialog box or menu mode.
   factory SearchableDropdown.multiple({
-    Key key,
-    @required List<DropdownMenuItem<T>> items,
-    @required Function onChanged,
+    Key? key,
+    required List<DropdownMenuItem<T>> items,
+    required Function onChanged,
     List<int> selectedItems = const [],
-    TextStyle style,
+    TextStyle? style,
     dynamic searchHint,
     dynamic hint,
     dynamic disabledHint,
@@ -231,60 +232,60 @@ class SearchableDropdown<T> extends StatefulWidget {
     dynamic closeButton = "Close",
     bool displayClearIcon = true,
     Icon clearIcon = const Icon(Icons.clear),
-    Color iconEnabledColor,
-    Color iconDisabledColor,
+    Color? iconEnabledColor,
+    Color? iconDisabledColor,
     double iconSize = 24.0,
     bool isExpanded = false,
     bool isCaseSensitiveSearch = false,
-    Function searchFn,
-    Function onClear,
-    Function selectedValueWidgetFn,
+    Function? searchFn,
+    Function? onClear,
+    Function? selectedValueWidgetFn,
     TextInputType keyboardType = TextInputType.text,
-    Function validator,
-    Function displayItem,
+    Function? validator,
+    Function? displayItem,
     bool dialogBox = true,
-    BoxConstraints menuConstraints,
+    BoxConstraints? menuConstraints,
     bool readOnly = false,
-    Color menuBackgroundColor,
+    Color? menuBackgroundColor,
   }) {
     return (SearchableDropdown._(
-      key: key,
+      key: key!,
       items: items,
-      style: style,
+      style: style!,
       searchHint: searchHint,
       hint: hint,
       disabledHint: disabledHint,
       icon: icon,
       underline: underline,
-      iconEnabledColor: iconEnabledColor,
-      iconDisabledColor: iconDisabledColor,
+      iconEnabledColor: iconEnabledColor!,
+      iconDisabledColor: iconDisabledColor!,
       iconSize: iconSize,
       isExpanded: isExpanded,
       isCaseSensitiveSearch: isCaseSensitiveSearch,
       closeButton: closeButton,
       displayClearIcon: displayClearIcon,
       clearIcon: clearIcon,
-      onClear: onClear,
-      selectedValueWidgetFn: selectedValueWidgetFn,
+      onClear: onClear!,
+      selectedValueWidgetFn: selectedValueWidgetFn!,
       keyboardType: keyboardType,
-      validator: validator,
+      validator: validator!,
       label: label,
-      searchFn: searchFn,
+      searchFn: searchFn!,
       multipleSelection: true,
       selectedItems: selectedItems,
       doneButton: doneButton,
       onChanged: onChanged,
-      displayItem: displayItem,
+      displayItem: displayItem!,
       dialogBox: dialogBox,
-      menuConstraints: menuConstraints,
+      menuConstraints: menuConstraints!,
       readOnly: readOnly,
-      menuBackgroundColor: menuBackgroundColor,
+      menuBackgroundColor: menuBackgroundColor!,
     ));
   }
 
   SearchableDropdown._({
-    Key key,
-    @required this.items,
+    Key? key,
+    required this.items,
     this.onChanged,
     this.value,
     this.style,
@@ -319,13 +320,13 @@ class SearchableDropdown<T> extends StatefulWidget {
         assert(iconSize != null),
         assert(isExpanded != null),
         assert(!multipleSelection || doneButton != null),
-        assert(menuConstraints == null || !dialogBox),
+        assert(menuConstraints == null || !dialogBox!),
         super(key: key);
 
   SearchableDropdown({
-    Key key,
-    @required this.items,
-    @required this.onChanged,
+    Key? key,
+    required this.items,
+    required this.onChanged,
     this.value,
     this.style,
     this.searchHint,
@@ -359,7 +360,7 @@ class SearchableDropdown<T> extends StatefulWidget {
         assert(iconSize != null),
         assert(isExpanded != null),
         assert(!multipleSelection || doneButton != null),
-        assert(menuConstraints == null || !dialogBox),
+        assert(menuConstraints == null || !dialogBox!),
         super(key: key);
 
   @override
@@ -367,46 +368,49 @@ class SearchableDropdown<T> extends StatefulWidget {
 }
 
 class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
-  List<int> selectedItems;
+  List<int>? selectedItems;
   PointerThisPlease<bool> displayMenu = PointerThisPlease<bool>(false);
 
-  TextStyle get _textStyle =>
+  TextStyle? get _textStyle =>
       widget.style ??
       (_enabled && !(widget.readOnly ?? false)
-          ? Theme.of(context).textTheme.subhead
+          ? Theme.of(context).textTheme.subtitle1
           : Theme.of(context)
               .textTheme
-              .subhead
+              .subtitle1!
               .copyWith(color: _disabledIconColor));
+
   bool get _enabled =>
       widget.items != null &&
-      widget.items.isNotEmpty &&
+      widget.items!.isNotEmpty &&
       widget.onChanged != null;
 
   Color get _enabledIconColor {
     if (widget.iconEnabledColor != null) {
-      return widget.iconEnabledColor;
+      return widget.iconEnabledColor!;
     }
     switch (Theme.of(context).brightness) {
       case Brightness.light:
         return Colors.grey.shade700;
       case Brightness.dark:
         return Colors.white70;
+      default:
+        return Colors.grey.shade700;
     }
-    return Colors.grey.shade700;
   }
 
   Color get _disabledIconColor {
     if (widget.iconDisabledColor != null) {
-      return widget.iconDisabledColor;
+      return widget.iconDisabledColor!;
     }
     switch (Theme.of(context).brightness) {
       case Brightness.light:
         return Colors.grey.shade400;
       case Brightness.dark:
         return Colors.white10;
+      default:
+        return Colors.grey.shade400;
     }
-    return Colors.grey.shade400;
   }
 
   Color get _iconColor {
@@ -420,23 +424,23 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     if (widget.validator == null) {
       return (true);
     }
-    return (widget.validator(selectedResult) == null);
+    return (widget.validator!(selectedResult) == null);
   }
 
   bool get hasSelection {
-    return (selectedItems != null && selectedItems.isNotEmpty);
+    return (selectedItems != null && selectedItems!.isNotEmpty);
   }
 
   dynamic get selectedResult {
     return (widget.multipleSelection
         ? selectedItems
         : selectedItems?.isNotEmpty ?? false
-            ? widget.items[selectedItems.first]?.value
+            ? widget.items![selectedItems!.first].value
             : null);
   }
 
   int indexFromValue(T value) {
-    return (widget.items.indexWhere((item) {
+    return (widget.items!.indexWhere((item) {
       return (item.value == value);
     }));
   }
@@ -454,8 +458,8 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     if (widget.multipleSelection) {
       selectedItems = List<int>.from(widget.selectedItems ?? []);
     } else if (widget.value != null) {
-      int i = indexFromValue(widget.value);
-      if (i != null && i != -1) {
+      int? i = indexFromValue(widget.value!);
+      if (i != -1) {
         selectedItems = [i];
       }
     }
@@ -463,7 +467,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
   }
 
   @override
-  void didUpdateWidget(SearchableDropdown oldWidget) {
+  void didUpdateWidget(SearchableDropdown<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     _updateSelectedIndex();
   }
@@ -486,10 +490,10 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       menuConstraints: widget.menuConstraints,
       menuBackgroundColor: widget.menuBackgroundColor,
       callOnPop: () {
-        if (!widget.dialogBox &&
+        if (!(widget.dialogBox ?? false) &&
             widget.onChanged != null &&
             selectedItems != null) {
-          widget.onChanged(selectedResult);
+          widget.onChanged!(selectedResult);
         }
         setState(() {});
       },
@@ -499,18 +503,18 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> items =
-        _enabled ? List<Widget>.from(widget.items) : <Widget>[];
-    int hintIndex;
+        _enabled ? List<Widget>.from(widget.items!) : <Widget>[];
+    int? hintIndex;
     if (widget.hint != null ||
         (!_enabled && prepareWidget(widget.disabledHint) != null)) {
-      final Widget emplacedHint = _enabled
+      final Widget? emplacedHint = _enabled
           ? prepareWidget(widget.hint)
           : DropdownMenuItem<Widget>(
               child: prepareWidget(widget.disabledHint) ??
-                  prepareWidget(widget.hint));
+                  prepareWidget(widget.hint)!);
       hintIndex = items.length;
       items.add(DefaultTextStyle(
-        style: _textStyle.copyWith(color: Theme.of(context).hintColor),
+        style: _textStyle!.copyWith(color: Theme.of(context).hintColor),
         child: IgnorePointer(
           child: emplacedHint,
           ignoringSemantics: false,
@@ -518,10 +522,10 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       ));
     }
     Widget innerItemsWidget;
-    List<Widget> list = List<Widget>();
+    var list = <Widget>[];
     selectedItems?.forEach((item) {
       list.add(widget.selectedValueWidgetFn != null
-          ? widget.selectedValueWidgetFn(widget.items[item].value)
+          ? widget.selectedValueWidgetFn!(widget.items![item].value)
           : items[item]);
     });
     if (list.isEmpty && hintIndex != null) {
@@ -536,12 +540,12 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
         : _kUnalignedButtonPadding;
 
     Widget clickable = InkWell(
-        key: Key(
-            "clickableResultPlaceHolder"), //this key is used for running automated tests
+        key: Key("clickableResultPlaceHolder"),
+        //this key is used for running automated tests
         onTap: (widget.readOnly ?? false) || !_enabled
             ? null
             : () async {
-                if (widget.dialogBox) {
+                if (widget.dialogBox!) {
                   await showDialog(
                       context: context,
                       barrierDismissible: true,
@@ -549,7 +553,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                         return (menuWidget);
                       });
                   if (widget.onChanged != null && selectedItems != null) {
-                    widget.onChanged(selectedResult);
+                    widget.onChanged!(selectedResult);
                   }
                 } else {
                   displayMenu.value = true;
@@ -558,7 +562,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
               },
         child: Row(
           children: <Widget>[
-            widget.isExpanded
+            (widget.isExpanded??false)
                 ? Expanded(child: innerItemsWidget)
                 : innerItemsWidget,
             IconTheme(
@@ -573,18 +577,18 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
         ));
 
     Widget result = DefaultTextStyle(
-      style: _textStyle,
+      style: _textStyle!,
       child: Container(
         padding: padding.resolve(Directionality.of(context)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            widget.isExpanded ? Expanded(child: clickable) : clickable,
+            (widget.isExpanded??false) ? Expanded(child: clickable) : clickable,
             !widget.displayClearIcon
                 ? SizedBox()
                 : InkWell(
-                    onTap: hasSelection && _enabled && !widget.readOnly
+                    onTap: hasSelection && _enabled && !widget.readOnly!
                         ? () {
                             clearSelection();
                           }
@@ -598,7 +602,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                           IconTheme(
                             data: IconThemeData(
                               color:
-                                  hasSelection && _enabled && !widget.readOnly
+                                  hasSelection && _enabled && !widget.readOnly!
                                       ? _enabledIconColor
                                       : _disabledIconColor,
                               size: widget.iconSize,
@@ -617,7 +621,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     final double bottom = 8.0;
     var validatorOutput;
     if (widget.validator != null) {
-      validatorOutput = widget.validator(selectedResult);
+      validatorOutput = widget.validator!(selectedResult);
     }
     var labelOutput = prepareWidget(widget.label, parameter: selectedResult,
         stringToWidgetFunction: (string) {
@@ -669,37 +673,37 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
   }
 
   clearSelection() {
-    selectedItems.clear();
+    selectedItems!.clear();
     if (widget.onChanged != null) {
-      widget.onChanged(selectedResult);
+      widget.onChanged!(selectedResult);
     }
     if (widget.onClear != null) {
-      widget.onClear();
+      widget.onClear!();
     }
     setState(() {});
   }
 }
 
 class DropdownDialog<T> extends StatefulWidget {
-  final List<DropdownMenuItem<T>> items;
-  final Widget hint;
-  final bool isCaseSensitiveSearch;
+  final List<DropdownMenuItem<T>>? items;
+  final Widget? hint;
+  final bool? isCaseSensitiveSearch;
   final dynamic closeButton;
-  final TextInputType keyboardType;
-  final Function searchFn;
-  final bool multipleSelection;
-  final List<int> selectedItems;
-  final Function displayItem;
+  final TextInputType? keyboardType;
+  final Function? searchFn;
+  final bool? multipleSelection;
+  final List<int>? selectedItems;
+  final Function? displayItem;
   final dynamic doneButton;
-  final Function validator;
-  final bool dialogBox;
-  final PointerThisPlease<bool> displayMenu;
-  final BoxConstraints menuConstraints;
-  final Function callOnPop;
-  final Color menuBackgroundColor;
+  final Function? validator;
+  final bool? dialogBox;
+  final PointerThisPlease<bool>? displayMenu;
+  final BoxConstraints? menuConstraints;
+  final Function? callOnPop;
+  final Color? menuBackgroundColor;
 
   DropdownDialog({
-    Key key,
+    Key? key,
     this.items,
     this.hint,
     this.isCaseSensitiveSearch = false,
@@ -727,20 +731,20 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
   TextStyle defaultButtonStyle =
       new TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
   List<int> shownIndexes = [];
-  Function searchFn;
+  Function? searchFn;
 
   _DropdownDialogState();
 
   dynamic get selectedResult {
-    return (widget.multipleSelection
+    return (widget.multipleSelection!
         ? widget.selectedItems
         : widget.selectedItems?.isNotEmpty ?? false
-            ? widget.items[widget.selectedItems.first]?.value
+            ? widget.items![widget.selectedItems!.first].value
             : null);
   }
 
   void _updateShownIndexes(String keyword) {
-    shownIndexes = searchFn(keyword, widget.items);
+    shownIndexes = searchFn!(keyword, widget.items);
   }
 
   @override
@@ -749,7 +753,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       searchFn = widget.searchFn;
     } else {
       Function matchFn;
-      if (widget.isCaseSensitiveSearch) {
+      if (widget.isCaseSensitiveSearch!) {
         matchFn = (item, keyword) {
           return (item.value.toString().contains(keyword));
         };
@@ -764,7 +768,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       searchFn = (keyword, items) {
         List<int> shownIndexes = [];
         int i = 0;
-        widget.items.forEach((item) {
+        widget.items!.forEach((item) {
           if (matchFn(item, keyword) || (keyword?.isEmpty ?? true)) {
             shownIndexes.add(i);
           }
@@ -786,8 +790,8 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       child: new Card(
         color: widget.menuBackgroundColor,
         margin: EdgeInsets.symmetric(
-            vertical: widget.dialogBox ? 10 : 5,
-            horizontal: widget.dialogBox ? 10 : 4),
+            vertical: (widget.dialogBox ?? false) ? 10 : 5,
+            horizontal: (widget.dialogBox ?? false) ? 10 : 4),
         child: new Container(
           constraints: widget.menuConstraints,
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
@@ -811,13 +815,13 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
     if (widget.validator == null) {
       return (true);
     }
-    return (widget.validator(selectedResult) == null);
+    return (widget.validator!(selectedResult) == null);
   }
 
   Widget titleBar() {
     var validatorOutput;
     if (widget.validator != null) {
-      validatorOutput = widget.validator(selectedResult);
+      validatorOutput = widget.validator!(selectedResult);
     }
 
     Widget validatorOutputWidget = valid
@@ -829,12 +833,12 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
               )
             : validatorOutput;
 
-    Widget doneButtonWidget =
-        widget.multipleSelection || widget.doneButton != null
+    Widget? doneButtonWidget =
+        (widget.multipleSelection ?? false) || widget.doneButton != null
             ? prepareWidget(widget.doneButton,
                 parameter: selectedResult,
                 context: context, stringToWidgetFunction: (string) {
-                return (FlatButton.icon(
+                return (TextButton.icon(
                     onPressed: !valid
                         ? null
                         : () {
@@ -851,15 +855,18 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  prepareWidget(widget.hint),
+                  prepareWidget(widget.hint)!,
                   Column(
-                    children: <Widget>[doneButtonWidget, validatorOutputWidget],
+                    children: <Widget>[
+                      doneButtonWidget!,
+                      validatorOutputWidget
+                    ],
                   ),
                 ]),
           )
         : new Container(
             child: Column(
-              children: <Widget>[doneButtonWidget, validatorOutputWidget],
+              children: <Widget>[doneButtonWidget!, validatorOutputWidget],
             ),
           );
   }
@@ -925,12 +932,12 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
   }
 
   pop() {
-    if (widget.dialogBox) {
+    if (widget.dialogBox!) {
       Navigator.pop(context);
     } else {
-      widget.displayMenu.value = false;
+      widget.displayMenu!.value = false;
       if (widget.callOnPop != null) {
-        widget.callOnPop();
+        widget.callOnPop!();
       }
     }
   }
@@ -940,20 +947,20 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       child: Scrollbar(
         child: new ListView.builder(
           itemBuilder: (context, index) {
-            DropdownMenuItem item = widget.items[shownIndexes[index]];
+            DropdownMenuItem item = widget.items![shownIndexes[index]];
             return new InkWell(
               onTap: () {
-                if (widget.multipleSelection) {
+                if (widget.multipleSelection!) {
                   setState(() {
-                    if (widget.selectedItems.contains(shownIndexes[index])) {
-                      widget.selectedItems.remove(shownIndexes[index]);
+                    if (widget.selectedItems!.contains(shownIndexes[index])) {
+                      widget.selectedItems!.remove(shownIndexes[index]);
                     } else {
-                      widget.selectedItems.add(shownIndexes[index]);
+                      widget.selectedItems!.add(shownIndexes[index]);
                     }
                   });
                 } else {
-                  widget.selectedItems.clear();
-                  widget.selectedItems.add(shownIndexes[index]);
+                  widget.selectedItems!.clear();
+                  widget.selectedItems!.add(shownIndexes[index]);
                   if (widget.doneButton == null) {
                     pop();
                   } else {
@@ -961,11 +968,11 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
                   }
                 }
               },
-              child: widget.multipleSelection
+              child: widget.multipleSelection!
                   ? widget.displayItem == null
                       ? (Row(children: [
                           Icon(
-                            widget.selectedItems.contains(shownIndexes[index])
+                            widget.selectedItems!.contains(shownIndexes[index])
                                 ? Icons.check_box
                                 : Icons.check_box_outline_blank,
                           ),
@@ -974,11 +981,11 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
                           ),
                           Flexible(child: item),
                         ]))
-                      : widget.displayItem(item,
-                          widget.selectedItems.contains(shownIndexes[index]))
+                      : widget.displayItem!(item,
+                          widget.selectedItems!.contains(shownIndexes[index]))
                   : widget.displayItem == null
                       ? item
-                      : widget.displayItem(item, item.value == selectedResult),
+                      : widget.displayItem!(item, item.value == selectedResult),
             );
           },
           itemCount: shownIndexes.length,

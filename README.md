@@ -58,11 +58,11 @@ Search choices Widget with a single choice that opens a dialog or a menu to let 
 
 ```dart
 factory SearchableDropdown.single({
-    Key key,
-    @required List<DropdownMenuItem<T>> items,
-    @required Function onChanged,
-    T value,
-    TextStyle style,
+    Key? key,
+    required List<DropdownMenuItem<T>> items,
+    required Function onChanged,
+    T? value,
+    TextStyle? style,
     dynamic searchHint,
     dynamic hint,
     dynamic disabledHint,
@@ -73,23 +73,23 @@ factory SearchableDropdown.single({
     dynamic closeButton = "Close",
     bool displayClearIcon = true,
     Icon clearIcon = const Icon(Icons.clear),
-    Color iconEnabledColor,
-    Color iconDisabledColor,
+    Color? iconEnabledColor,
+    Color? iconDisabledColor,
     double iconSize = 24.0,
     bool isExpanded = false,
     bool isCaseSensitiveSearch = false,
-    Function searchFn,
-    Function onClear,
-    Function selectedValueWidgetFn,
+    Function? searchFn,
+    Function? onClear,
+    Function? selectedValueWidgetFn,
     TextInputType keyboardType = TextInputType.text,
-    Function validator,
+    Function? validator,
     bool assertUniqueValue = true,
-    Function displayItem,
+    Function? displayItem,
     bool dialogBox = true,
-    BoxConstraints menuConstraints,
-    bool readOnly: false,
-    Color menuBackgroundColor,
-}
+    BoxConstraints? menuConstraints,
+    bool readOnly = false,
+    Color? menuBackgroundColor,
+  }
 )
 ```
 
@@ -133,8 +133,8 @@ Search choices Widget with a multiple choice that opens a dialog or a menu to le
 SearchableDropdown<T>.multiple(
 {
     Key key,
-    @required List<DropdownMenuItem<T>> items,
-    @required Function onChanged,
+    required List<DropdownMenuItem<T>> items,
+    required Function onChanged,
     List<int> selectedItems: const [],
     TextStyle style,
     dynamic searchHint,
