@@ -783,6 +783,11 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
 
   @override
   Widget build(BuildContext context) {
+    double _horizontalMargin = widget.dialogBox ? 10 : 4;
+    if (MediaQuery.of(context).size.width > 450){
+      _horizontalMargin = (MediaQuery.of(context).size.width - 450) / 2;
+    }
+
     return AnimatedContainer(
             padding: MediaQuery.of(context).viewInsets,
             duration: const Duration(milliseconds: 300),
@@ -790,7 +795,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
               color: widget.menuBackgroundColor,
               margin: EdgeInsets.symmetric(
                   vertical: widget.dialogBox ? 10 : 5,
-                  horizontal: widget.dialogBox ? 10 : 4),
+                  horizontal: _horizontalMargin),
               child: Container(
                 constraints: widget.menuConstraints,
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
@@ -799,9 +804,10 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    titleBar(),
+                    //titleBar(),
+                    selectAll(),
                     searchBar(),
-                    list(),
+                    list(), 
                     closeButtonWrapper(),
                   ],
                 )),
@@ -865,6 +871,30 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
               children: <Widget>[doneButtonWidget, validatorOutputWidget],
             ),
           );
+  }
+
+
+
+  Widget selectAll() {
+    Widget doneButtonWidget = TextButton.icon(
+                    onPressed: !valid
+                        ? null
+                        : () {
+                            if (widget.selectedItems.length == shownIndexes.length){  
+                              widget.selectedItems.clear();
+                            }else{
+                              widget.selectedItems.addAll(shownIndexes);
+                            }
+                            setState(() {});
+                          },
+                    icon: Icon(Icons.done_all),
+                    label: Text('Seleccionar Todo'));
+
+    return Container(
+      child: Column(
+        children: <Widget>[doneButtonWidget],
+      ),
+    );
   }
 
   Widget searchBar() {
@@ -1001,7 +1031,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                FlatButton(
+                TextButton(
                   onPressed: () {
                     pop(true);
                   },
