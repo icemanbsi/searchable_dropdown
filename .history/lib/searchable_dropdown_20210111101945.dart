@@ -374,10 +374,10 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
   TextStyle get _textStyle =>
       widget.style ??
       (_enabled && !(widget.readOnly ?? false)
-          ? Theme.of(context).textTheme.subtitle1
+          ? Theme.of(context).textTheme.subhead
           : Theme.of(context)
               .textTheme
-              .subtitle1
+              .subhead
               .copyWith(color: _disabledIconColor));
   bool get _enabled =>
       widget.items != null &&
@@ -549,7 +549,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                       builder: (context) {
                         return (menuWidget);
                       });
-                  if (widget.onChanged != null) {
+                  if (widget.onChanged != null && hasSelection) {
                     widget.onChanged(selectedResult, confirm);
                   }
                 } else {
@@ -783,37 +783,31 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
 
   @override
   Widget build(BuildContext context) {
-    double _horizontalMargin = widget.dialogBox ? 10 : 4;
-    if (MediaQuery.of(context).size.width > 450){
-      _horizontalMargin = (MediaQuery.of(context).size.width - 450) / 2;
-    }
-
     return AnimatedContainer(
-            padding: MediaQuery.of(context).viewInsets,
-            duration: const Duration(milliseconds: 300),
-            child: Card(
-              color: widget.menuBackgroundColor,
-              margin: EdgeInsets.symmetric(
-                  vertical: widget.dialogBox ? 10 : 5,
-                  horizontal: _horizontalMargin),
-              child: Container(
-                constraints: widget.menuConstraints,
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    //titleBar(),
-                    selectAll(),
-                    searchBar(),
-                    list(), 
-                    closeButtonWrapper(),
-                  ],
-                )),
-              ),
-            );
-    
+      padding: MediaQuery.of(context).viewInsets,
+      duration: const Duration(milliseconds: 300),
+      child: new Card(
+        color: widget.menuBackgroundColor,
+        margin: EdgeInsets.symmetric(
+            vertical: widget.dialogBox ? 10 : 5,
+            horizontal: widget.dialogBox ? 10 : 4),
+        child: new Container(
+          constraints: widget.menuConstraints,
+          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              titleBar(),
+              searchBar(),
+              list(),
+              closeButtonWrapper(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   bool get valid {
@@ -871,31 +865,6 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
               children: <Widget>[doneButtonWidget, validatorOutputWidget],
             ),
           );
-  }
-
-
-
-  Widget selectAll() {
-    Widget doneButtonWidget = TextButton.icon(
-      onPressed: !valid
-          ? null
-          : () {
-              if (widget.selectedItems.length == shownIndexes.length){  
-                widget.selectedItems.clear();
-              }else{
-                widget.selectedItems.clear();
-                widget.selectedItems.addAll(shownIndexes);
-              }
-              setState(() {});
-            },
-      icon: Icon(Icons.done_all),
-      label: Text('Seleccionar Todo'));
-
-    return Container(
-      child: Column(
-        children: <Widget>[doneButtonWidget],
-      ),
-    );
   }
 
   Widget searchBar() {
@@ -973,7 +942,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
   }
 
   Widget list() {
-    return Expanded(
+    return new Expanded(
       child: Scrollbar(
         child: new ListView.builder(
           itemBuilder: (context, index) {
@@ -1032,7 +1001,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                TextButton(
+                FlatButton(
                   onPressed: () {
                     pop(true);
                   },
