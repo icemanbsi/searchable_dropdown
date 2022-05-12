@@ -877,18 +877,19 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
 
   Widget selectAll() {
     Widget doneButtonWidget = TextButton.icon(
-                    onPressed: !valid
-                        ? null
-                        : () {
-                            if (widget.selectedItems.length == shownIndexes.length){  
-                              widget.selectedItems.clear();
-                            }else{
-                              widget.selectedItems.addAll(shownIndexes);
-                            }
-                            setState(() {});
-                          },
-                    icon: Icon(Icons.done_all),
-                    label: Text('Seleccionar Todo'));
+      onPressed: !valid
+          ? null
+          : () {
+              if (widget.selectedItems.length == shownIndexes.length){  
+                widget.selectedItems.clear();
+              }else{
+                widget.selectedItems.clear();
+                widget.selectedItems.addAll(shownIndexes);
+              }
+              setState(() {});
+            },
+      icon: Icon(Icons.done_all),
+      label: Text('Seleccionar Todo'));
 
     return Container(
       child: Column(
